@@ -8,7 +8,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Laravel-SPA</title>
 
   <!-- Font Awesome Icons -->
@@ -16,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id="app">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -138,10 +139,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index.php" class="brand-link">
+    <a href="/" class="brand-link">
       <img src="/images/motor.png" alt="LaravelSPA" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">LaravelSPA</span>
+      <span class="brand-text font-weight-light">{{ config('app.name', 'LaravelSPA') }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -152,49 +153,174 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="/images/virus.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">UserName</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }} </a>
         </div>
       </div>
 
-      <!-- Sidebar Menu -->
+         <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt blue"></i>
               <p>
-                Starter Pages
+                Dashboard
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <router-link to="/users" class="nav-link">
+                  <span>
+                  <i class="fa fa-users nav-icon"></i>
+                  users</span>
+                </router-link>
+          
+              </li>
+              <li class="nav-item">
+                <a href="./VueStudy.html" class="nav-link">               
+                  <p>
+                  <i class="fa fa-cubes"></i>
+                  VueStudy</p>
+                  </a>
+
+          
+              </li>
+              <li class="nav-item">
+                <router-link to="/dashboard" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
+                  <p>Dashboard ===</p>
+                </router-link>          
+              </li>
+
+            </ul>
+          </li>
+          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy indigo"></i>
+              <p>
+                Layout Options
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">6</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link to="/dashboard" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Layout ===</p>
+                </router-link>
+          
+              </li>
+              <li class="nav-item">
+                <router-link to="/dashboard" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Layout ===</p>
+                </router-link>
+          
+              </li>
+              <li class="nav-item">
+                <router-link to="/dashboard" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Layout ===</p>
+                </router-link>
+          
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie cyan"></i>
+              <p>
+                Charts
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item ">
+                <router-link to="/dashboard" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Charts===</p>
+                </router-link>
+          
+              </li>
+              <li class="nav-item ">
+                <router-link to="/dashboard" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Charts===</p>
+                </router-link>
+          
+              </li>
+            </ul>
+          </li>
+          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit green"></i>
+              <p>
+                Forms
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <router-link to="/dashboard" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dashboard ===</p>
+                </router-link>
+          
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table orange"></i>
+              <p>
+                Tables
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../tables/simple.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Simple Tables</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="../tables/data.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
+                  <p>DataTables</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../tables/jsgrid.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>jsGrid</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
+        <li class="nav-item">
+                <router-link to="/profile" class="nav-link">
+                  <i class="fa fa-user fa-fw yellow"></i>
+                  <p>Profile</p>
+                </router-link>          
+              </li>
+        <li class="nav-item">
+        <a href="/logout" onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();" class="nav-link btn btn-danger"><i class="nav-icon fas fa-power-off"></i> <p>
+                LogOut
+              </p></a> 
+        <form id="logout-form" action="/logout" method="POST" style="display: none;"><input type="hidden" name="_token" value="4cJYPte4b8DXT1d7L5b3sdrxuOh8F1Gg395I2VIx">@csrf</form>
+        </li>
+
         </ul>
       </nav>
+      <!-- /.sidebar-menu -->
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -203,83 +329,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Starter Page</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
+
     <!-- /.content-header -->
 
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div><!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-6 -->
-        </div>
+        <router-view>
+         
+        </router-view>       
+        <vue-progress-bar></vue-progress-bar>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -305,10 +364,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="/js/app.js"></script>
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<!-- ************* 为啥引入会在控制台报错(SyntaxError: expected expression, got '<')*********** -->
+<!-- <script src="plugins/jquery/jquery.min.js"></script> -->
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<!-- <script src="dist/js/adminlte.min.js"></script> -->
 </body>
 </html>

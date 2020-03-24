@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue-s2 study</title>
+<style>
+	body{
+		font-family: arial;
+	}
+</style>
+</head>
+<body>
+	<div id="app">
+	<h3 title="title">双花括号插值绑定data:{{price}}</h3>
+	<h3 v-text="'V-text绑定data:'+price">{{price}}</h3>
+	<h3 :title="content">用冒号绑定title属性,鼠标移到此处看提示</h5>
+	<h3>V-model绑定双向数据</h3>
+	<h5 v-text="modeldata"></h3>
+	<input type="text" v-model="modeldata">
+	<h3>V-For循环</h3>
+	<ul>
+		<li v-for="f in fruits">{{f}}</li>
+	</ul>	
+	<input type="text" name='fruit' v-model="fruit">
+	<input type="button" value="添加水果v-on:click" v-on:click="addfruit">
+	<input type="button" value="添加水果@click" @click="fruits.push(fruit)">
+	<h3>V-if条件</h3>
+		<div>
+			<div style="background-color: #a8f">Color set test</div>
+			<div v-on:click="randstr"><h1>Click to see Color change(在method下使用event.target.setAttribute()或event.target.style.setProperty())</h1></div>
+
+			<div style="background-color: #a8f">Hide and show</div>
+			<div v-for="book in books" @click="book.onsale = ! book.onsale">{{book.title}}
+				<div v-if="book.onsale" >
+				<div>{{book.description}}</div>
+				<div>{{book.price}}</div>
+				<div v-if="book.onsale" v-text="'价格:'+book.price"></div>
+				<div v-else="book.onsale" v-text="'没有价格:'"></div>
+				</div>
+			</div>
+			
+		</div>
+		<div style="background-color: #a8f">Computed property</div>
+		<input type="text" name='price' v-model="price">
+		<div>{{tax}}</div>	
+		<div>{{total}}</div>	
+		<div>{{formatMoney(tax)}}</div>	
+		<div>{{formatMoney(total)}}</div>
+		<div style="background-color: #a8f">Component,父组件传值到子组件，在子组件中声明props属性,通过属性传值</div>
+		<bookcomp v-for = "book in books" :data="book" :key="book.id"></bookcomp>
+	
+
+	</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+	Vue.component('bookcomp',{
+		props:['data'],
+		template:`<div>
+		<p>{{data.title}}</p>
+		<span @click="toggle=!toggle">Click to see more</span>
+		<p v-if="toggle">{{data.description}}</p>	
+		</div>`,
+		data:function(){
+			return {
+				toggle:false,
+			};
+		}
+
+	});
+
+	new Vue({
+		el:"#app",
+		data:{
+			price:100,
+			title:"test title",
+			content:"test content",
+			modeldata:"md",
+			fruit:'',
+			fruits:['apple','pear','banana'],
+			books:[
+			{title:'Title1111,click to hide and show',description:'description1111',price:'88',onsale:false,id:1},
+			{title:'Title2222,click to hide and show',description:'description2222',price:'88',onsale:false,id:2},
+			{title:'Title3333,click to hide and show',description:'description3333',price:'88',onsale:true,id:3},
+			{title:'Title4444,click to hide and show',description:'description4444',price:'88',onsale:true,id:4},
+			],
+			bgcolor:""
+			
+		},
+		methods:{
+			"addfruit":function(){
+				this.fruits.push(this.fruit);
+				alert('添加水果function');
+			},
+
+			randstr:function(event){
+				// console.log(event.target.innerText);
+				// console.log(event.currentTarget.innerText);
+				// event.target.setAttribute('style','background-color:pink');
+				event.target.style.setProperty('height', '100px', 'important');
+				var code='#' + Math.random().toString(16).substr(2, 3).toUpperCase();
+				console.log(Math.random().toString(16));
+				event.target.style.backgroundColor=code;
+			},
+			formatMoney:function(n){
+				return '￥'+n+'.00';
+
+			}
+
+		},
+		computed:{
+			"tax":function(){
+				return this.price*0.3;
+			},
+			"total":function(){
+				return this.price+this.tax;
+			},	
+		},
+		created:function () {
+
+		},
+	})
+</script>
+
+</html>
