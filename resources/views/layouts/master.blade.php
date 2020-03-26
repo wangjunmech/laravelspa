@@ -16,7 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="/css/app.css">
 
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini ">
 <div class="wrapper" id="app">
 
   <!-- Navbar -->
@@ -137,16 +137,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- 修改侧边栏颜色 -->
+<!-- CSS文件：D:\PHP\WWW\laravel\laravelspa\node_modules\admin-lte\dist\css -->
+
+  <aside class="main-sidebar sidebar-mini cusbg">
+  <!-- <aside class="main-sidebar sidebar-dark-primary elevation-4"> -->
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
       <img src="/images/motor.png" alt="LaravelSPA" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">{{ config('app.name', 'LaravelSPA') }}</span>
+      <span class="brand-text font-weight-light ">{{ config('app.name', 'LaravelSPA') }}</span>
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar ">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
@@ -158,7 +162,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
 
          <!-- Sidebar Menu -->
-      <nav class="mt-2">
+      <nav class="mt-2 " >
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -172,7 +176,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link to="/users" class="nav-link">
+                <router-link to="/users" class="nav-link ">
                   <span>
                   <i class="fa fa-users nav-icon"></i>
                   users</span>
@@ -325,6 +329,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
     <!-- /.sidebar -->
   </aside>
+ 
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

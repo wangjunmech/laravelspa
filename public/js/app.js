@@ -2201,12 +2201,15 @@ __webpack_require__.r(__webpack_exports__);
       this.form.fill(user);
       this.$Progress.finish();
     },
+    //更新编辑用户
     updateUser: function updateUser(id) {
       var _this3 = this;
 
       console.log('#Updating User');
       this.$Progress.start();
-      axios.patch('api/user/' + this.form.id).then(function () {
+      this.form.put('api/user/' + this.form.id).then(function (response) {
+        console.log(response.data);
+
         _this3.$Progress.finish();
 
         $("#userModal").modal('hide');
@@ -2259,8 +2262,7 @@ __webpack_require__.r(__webpack_exports__);
     eventHandler.$on('userListRefresh', function () {
       _this4.loadUsers();
 
-      console.log('重新加载用户表');
-      console.log(_this4.users);
+      console.log('重新加载用户表'); // console.log(this.users)
     });
   }
 });

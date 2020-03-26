@@ -168,11 +168,13 @@
                 this.form.fill(user);  
                 this.$Progress.finish();               
             },
+            //更新编辑用户
             updateUser(id){
                 console.log('#Updating User')
                 this.$Progress.start();
-                axios.patch('api/user/'+this.form.id)
-                .then(()=>{
+                this.form.put('api/user/'+this.form.id)
+                .then((response)=>{
+                    console.log(response.data)
                     this.$Progress.finish();
                     $("#userModal").modal('hide');
                     swalt.fire({
@@ -229,7 +231,7 @@
             eventHandler.$on('userListRefresh',()=>{
                 this.loadUsers()
                 console.log('重新加载用户表')
-                console.log(this.users)
+                // console.log(this.users)
             })
         },
 
