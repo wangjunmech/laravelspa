@@ -30,16 +30,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    <div class="">
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control form-control-navbar" type="search" v-model="searchStr" @keyup.enter="searchFun" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
+          <button class="btn btn-navbar" type="submit" @click="searchFun">
             <i class="fas fa-search"></i>
           </button>
         </div>
+        <p></p>
       </div>
-    </form>
+    </div>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -140,8 +141,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- 修改侧边栏颜色 -->
 <!-- CSS文件：D:\PHP\WWW\laravel\laravelspa\node_modules\admin-lte\dist\css -->
 
-  <aside class="main-sidebar sidebar-mini cusbg">
-  <!-- <aside class="main-sidebar sidebar-dark-primary elevation-4"> -->
+  <!-- <aside class="main-sidebar sidebar-mini cusbg"> -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
       <img src="/images/motor.png" alt="LaravelSPA" class="brand-image img-circle elevation-3"
@@ -188,14 +189,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>
                   <i class="fa fa-cubes"></i>
                   VueStudy</p>
-                  </a>
-
-          
+                  </a>          
               </li>
               <li class="nav-item">
-                <router-link to="/dashboard" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard ===</p>
+                <router-link to="/passportdemo" class="nav-link">
+                  <i class="fa fa-key"></i>
+                  <p>Passport demo</p>
                 </router-link>          
               </li>
 
@@ -206,26 +205,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy indigo"></i>
               <p>
-                Layout Options
+                StudyExamples
                 <i class="fas fa-angle-left right"></i>
                 <span class="badge badge-info right">6</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link to="/dashboard" class="nav-link">
+                <a href="/guessNum.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Layout ===</p>
-                </router-link>
+                  <p>guessNum.php</p>
+                </a>
           
               </li>
+
               <li class="nav-item">
-                <router-link to="/dashboard" class="nav-link">
+                <a href="/Audio.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Layout ===</p>
-                </router-link>
+                  <p>Audio/Video</p>
+                </a>
           
               </li>
+              
               <li class="nav-item">
                 <router-link to="/dashboard" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -239,7 +240,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie cyan"></i>
               <p>
-                Charts
+                Plastic Industrial
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -247,14 +248,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item ">
                 <router-link to="/dashboard" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Charts===</p>
+                  <p>Injection Machine</p>
                 </router-link>
           
               </li>
               <li class="nav-item ">
                 <router-link to="/dashboard" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Charts===</p>
+                  <p>Injection Vendor</p>
                 </router-link>
           
               </li>
@@ -271,7 +272,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <router-link to="/dashboard" class="nav-link">
+                <router-link to="/norouter" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard ===</p>
                 </router-link>
@@ -283,31 +284,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table orange"></i>
               <p>
-                Tables
+                DependancesTables
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../tables/simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
-                </a>
+              <li class="nav-item ">
+                <router-link to="/php" class="nav-link">
+                  <img src="/logos/php.jpg" alt="无图片显示" style="width: 30px;height: 30px">
+                  <p>PHP</p>
+                </router-link>
+          
               </li>
-              <li class="nav-item">
-                <a href="../tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
-                </a>
+              <li class="nav-item ">
+                <router-link to="/js" class="nav-link">
+                  <img src="/logos/js.jpg" alt="无图片显示" style="width: 30px;height: 30px">
+                  <p>JS</p>
+                </router-link>
+          
               </li>
-              <li class="nav-item">
-                <a href="../tables/jsgrid.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>jsGrid</p>
-                </a>
+          
               </li>
-            </ul>
-          </li>
+              <li class="nav-item ">
+                <router-link to="/other" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Other</p>
+                </router-link>
+          
+              </li>
+             </ul>
+              
         <li class="nav-item">
                 <router-link to="/profile" class="nav-link">
                   <i class="fa fa-user fa-fw yellow"></i>

@@ -23,7 +23,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="user in users" :key="user.id">
+                    <tr v-for="user in users.data" :key="user.id">
                       <td>{{user.id}}</td>
                       <td>{{user.name}}</td>
                       <td>{{user.name|ucText}}</td>
@@ -43,8 +43,16 @@
                 </table>
               </div>
               <!-- /.card-body -->
+              <div class="card-footer justify-content-center" >
+                <pagination :data="users" @pagination-change-page="getResults" class="">
+                  <span slot="prev-nav">&lt;&lt; Previous</span>
+                  <span slot="next-nav">Next &gt;&gt;</span>
+                </pagination>
+              </div>
             </div>
             <!-- /.card -->
+
+
           </div>
          <!-- Add or user Modal -->
             <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -118,6 +126,12 @@
             }
         }, 
         methods:{
+            getResults(page=1){
+              axios.get('api/user?page='+page)
+                      .then(response =>{
+                        this.users = response.data
+                      })
+            },
             changeForm(){
                 this.editMode=false;
                 this.form.clear();//清除错误
@@ -128,7 +142,8 @@
                 this.$Progress.start();
                 axios.get('api/user')
                 .then(({data}) => (
-                    this.users = data.data
+                    this.users = data
+                    // console.log(data.data)
                     ))
                 .catch(err=>console.log(err))
                 this.$Progress.finish();
@@ -233,7 +248,24 @@
                 console.log('重新加载用户表')
                 // console.log(this.users)
             })
+
+            // // 搜索
+            eventHandler.$on('searching',()=>{
+                // console.log('搜索用户表'+kwords);
+              let kwords=this.$parent.searchStr;
+                axios.get('api/finduser?k='+kwords)
+                .then((response)=>{
+                  // console.log('搜索到的用户返回****************')
+                  // console.log(response.data);
+                  this.users=response.data
+                })
+                .catch(()=>{})
+            })
+            
         },
+        mounted(){
+          this.getResults();
+        }
 
 
     }

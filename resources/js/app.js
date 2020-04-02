@@ -1,13 +1,14 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
+window.Vue = require('vue');
 import dashboard from './components/dashboard.vue'
 import profile from './components/profile.vue'
 import users from './components/users.vue'
+import pdemo from './components/pdemo.vue'
+import notFound from './components/notFound.vue'
+import php from './components/study/dps-php.vue'
+import js from './components/study/dps-js.vue'
+import other from './components/study/dps-other.vue'
+
 
 // 进度表插件：http://hilongjw.github.io/vue-progressbar/
 import VueProgressBar from 'vue-progressbar'
@@ -25,8 +26,28 @@ const Toast = swalt.mixin({
   }
 })
 
+/* Laravel passport template*/
+Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue').default
+);
 
-window.Vue = require('vue')
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue').default
+);
+
+/* Laravel passport End*/
+
+/* Laravel-vue-pagination*/
+Vue.component('pagination', require('laravel-vue-pagination'));
+/* Laravel-vue-pagination end */
+
 
 // 表单验证插件https://github.com/cretueusebiu/vform
 /*vform安装 npm i axios vform*/ 
@@ -52,6 +73,15 @@ let routes = [
 {path:'/dashboard',component:dashboard},
 {path:'/profile',component:profile},
 {path:'/users',component:users},
+{path:'/passportdemo',component:pdemo},
+{path:'/js',component:js},
+{path:'/php',component:php},
+{path:'/other',component:other},
+
+//配置404找不到页面
+{path: "/404",name: "notFound",component: notFound},
+{path: "*",redirect: "/404"},
+
 ]
 
 const router = new VueRouter({
@@ -93,5 +123,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    data:{
+      searchStr:'',
+    },
+    methods:{
+      searchFun(){
+        // console.log('搜索开始SSSSSSSSSSSS');
+        //注册全局搜索事件
+        eventHandler.$emit('searching');
+      }
+    }
 }).$mount('#app');
