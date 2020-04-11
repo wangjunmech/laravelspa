@@ -1,16 +1,40 @@
 <template>
+    <!-- SOURCE -->
     <div class="container">
           <div class="col-md-12 mt-2">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Users Table</h3>
+                <h3 class="card-title">Users Table</h3> <button @click="print" class="btn btn-danger ml-5">VueHtmlToPaper打印表格888</button>
                 <div class="card-tools">
                       <button class="btn btn-primary" data-toggle="modal" data-target="#userModal" @click="changeForm()" ><i class="fas fa-user-plus orange"></i> Add New User</button>
 
               </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0">
+              <div id='loadblock' v-show="loadingStatus"
+              style="position: absolute; z-index: 2; left:0; right:0; top:0; bottom:0; margin:auto;" 
+              >
+                <div class="loading">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                </div>
+                <div class="tj">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                </div>
+              </div>
+              <div id="printMe" class="card-body table-responsive p-0">
+                <div style="position: relative;">              
+                
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -41,6 +65,7 @@
 
                   </tbody>
                 </table>
+                </div>
               </div>
               <!-- /.card-body -->
               <div class="card-footer justify-content-center" >
@@ -108,6 +133,8 @@
               </div>
             </div>
     </div>
+  <!-- OUTPUT -->
+
 </template>
 
 <script>
@@ -121,16 +148,58 @@
                     name:'',
                     email:'',
                     password:'',
-                })
-
+                }),
+                loadingStatus:false
             }
         }, 
         methods:{
             getResults(page=1){
+              this.loadingStatus=true;
+              var flag=this;
               axios.get('api/user?page='+page)
                       .then(response =>{
                         this.users = response.data
+                        this.loadingStatus=false;
                       })
+                      .catch(function (error) {
+                        if (error.response) {
+                          // // The request was made and the server responded with a status code
+                          // // that falls out of the range of 2xx
+                          // console.log(error.response.data);
+                          // console.log(error.response.status);
+                          // console.log(error.response.headers);
+                          swalt.fire({
+                            icon: 'error',
+                            title: error.response.status
+                          })
+                          flag.loadingStatus=false;
+
+
+                        } else if (error.request) {
+                          // The request was made but no response was received
+                          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                          // http.ClientRequest in node.js
+                          console.log(error.request);
+
+                          console.log(flag.loadingStatus+'>>>>>>>>>>');
+                          
+                          flag.loadingStatus=false;
+                          swalt.fire({
+                            icon: 'error',
+                            title: error.request
+                          })
+                        } else {
+                          // Something happened in setting up the request that triggered an Error
+                          console.log('Error', error.message);
+                          swalt.fire({
+                            icon: 'error',
+                            title: error.message
+                          })
+                        }
+                        console.log(error.config);
+                          flag.loadingStatus=false;
+                      });
+
             },
             changeForm(){
                 this.editMode=false;
@@ -139,21 +208,22 @@
             },
 
             loadUsers(){
-                this.$Progress.start();
-                axios.get('api/user')
-                .then(({data}) => (
-                    this.users = data
-                    // console.log(data.data)
-                    ))
-                .catch(err=>console.log(err))
-                this.$Progress.finish();
-                // swalt.fire({
-                //   icon: 'success',
-                //   title: 'Users loaded successfully!'
-                // })
-                console.log('#加载用户列表111！')
-
-            },
+                // this.loadingStatus=true;
+                // this.$Progress.start();
+                // axios.get('api/user')
+                // .then(({data}) => (
+                //     this.users = data
+                //     // console.log(data.data)
+                //     ))
+                // .catch(err=>console.log(err))
+                // this.$Progress.finish();
+                // // swalt.fire({
+                // //   icon: 'success',
+                // //   title: 'Users loaded successfully!'
+                // // })
+                // console.log('#加载用户列表........！')
+                // this.loadingStatus=false;
+             },
             createUser(){
                 console.log('#Submit Create User')
                 this.editMode=false;
@@ -234,11 +304,17 @@
                       }
                     })
                 this.$Progress.finish();
+            },
+            print () {
+              // 打印元素的ID为printMe
+              // 设置打印范围，打印内容为 <!-- SOURCE --><!-- OUTPUT -->标记之间的内容
+              this.$htmlToPaper('printMe');
             }
+ 
         } ,
         created() {
-            this.loadUsers();
-            console.log('Component created!!');
+            // this.loadUsers();
+            // console.log('Component created!!');
             // 指定每隔几秒定时发送请求
             // setInterval(()=>this.loadUsers(),3000);
 
@@ -249,15 +325,26 @@
                 // console.log(this.users)
             })
 
-            // // 搜索
+            // // #################----监听触发父组件中的搜索事件----####################
             eventHandler.$on('searching',()=>{
                 // console.log('搜索用户表'+kwords);
               let kwords=this.$parent.searchStr;
                 axios.get('api/finduser?k='+kwords)
                 .then((response)=>{
-                  // console.log('搜索到的用户返回****************')
+                  console.log('搜索用户后返回****************')
                   // console.log(response.data);
-                  this.users=response.data
+                  this.users=response.data;                  
+                })
+                .then(()=>{
+                  // console.log((JSON.stringify(this.users.data) ));
+                  console.log('没有搜索到返回提示****************')
+                  if(this.users.data==''){
+                    swalt.fire(
+                      ' Search Result Empty',
+                      'Nothing found!!!',
+                      'warning'
+                              )
+                  }
                 })
                 .catch(()=>{})
             })
@@ -270,3 +357,7 @@
 
     }
 </script>
+<style scoped="scoped">
+
+
+</style>

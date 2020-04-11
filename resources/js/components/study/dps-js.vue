@@ -7,10 +7,20 @@
                     <div class="card-body">
                         <a href="https://www.npmjs.com" class="list-group-item list-group-item-secondary" target="_blank">JS包管理：NPM</a>                      
                         <a href="https://sweetalert2.github.io/#examples" class="list-group-item list-group-item-warning" target="_blank">弹窗插件: sweetalert2 </a>
-                        <a href="http://image.intervention.io/getting_started/installation" class="list-group-item list-group-item-danger" target="_blank">图像处理：intervention/image</a>
+
                         <a href="https://www.npmjs.com/package/vform" class="list-group-item list-group-item-dark" target="_blank">Laravel & Vue表单验证: vform </a>
-                        <a href="" class="list-group-item list-group-item-primary" target="_blank">XXXX： XXXX/image</a> 
-                        <a href=" " class="list-group-item list-group-item-secondary" target="_blank">XXXX </a>    
+                        <li class="list-group-item list-group-item-primary">
+                        <a href="https://randomcodetips.com/vue-html-to-paper/"  target="_blank">打印页面：Vue HTML to Paper </a>                 
+                            <router-link to="/users" class="ml-5">
+                              <span>
+                              <i class="fa fa-users nav-icon"></i>
+                              打印示例：users list</span>
+                            </router-link>
+                            </li>
+
+
+                        <a href="https://laravel-vue-pagination.now.sh/" class="list-group-item list-group-item-secondary" target="_blank">分页插件:gilbitron /
+laravel-vue-pagination </a>    
                         <a href=" " class="list-group-item list-group-item-warning" target="_blank">XXXX </a>    
                         <a href=" " class="list-group-item list-group-item-danger" target="_blank">XXXX </a>    
                         <a href=" " class="list-group-item list-group-item-dark" target="_blank">XXXX </a>    

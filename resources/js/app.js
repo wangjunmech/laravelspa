@@ -8,6 +8,23 @@ import notFound from './components/notFound.vue'
 import php from './components/study/dps-php.vue'
 import js from './components/study/dps-js.vue'
 import other from './components/study/dps-other.vue'
+import studynote from './components/study/studynote.vue'
+import autofocus from './components/study/autofocus.vue'
+import ref from './components/study/ref.vue'
+import loadingStyle from './components/study/loadingStyle.vue'
+import uploadfiles from './components/study/upload.vue'
+import loadimgs from './components/study/loadimgs.vue'
+import reference from './route/reference.vue'
+import refhtml from './components/ref/refhtml.vue'
+import refjs from './components/ref/refjs.vue'
+import refphp from './components/ref/refphp.vue'
+import refother from './components/ref/refother.vue'
+import inputacc from './components/ref/html/inputacc.vue'
+import btnstyle from './components/ref/html/buttonStyle.vue'
+import refcss from './components/ref/refcss.vue'
+import divpos from './components/ref/css/divpos.vue'
+import addlink from './components/study/addlink.vue'
+
 
 
 // 进度表插件：http://hilongjw.github.io/vue-progressbar/
@@ -48,6 +65,12 @@ Vue.component(
 Vue.component('pagination', require('laravel-vue-pagination'));
 /* Laravel-vue-pagination end */
 
+// 测试组件************************
+// Vue.component('progressbar', require('./components/progressbar.vue'));
+// Vue.component('ExampleComponent', require('./components/ExampleComponent.vue'));
+import progressbar from './components/progressbar.vue'
+import expc from './components/ExampleComponent.vue'
+// 测试组件************************
 
 // 表单验证插件https://github.com/cretueusebiu/vform
 /*vform安装 npm i axios vform*/ 
@@ -67,6 +90,32 @@ Vue.use(VueProgressBar, {
   height: '52'
 })
 
+
+
+// 自动聚集插件npm install vue-auto-focus
+import AutoFocus from 'vue-auto-focus'
+Vue.use(AutoFocus)
+
+
+// 打印页面插件
+import VueHtmlToPaper from 'vue-html-to-paper';
+
+const options = {
+  name: '_blank',
+  specs: [
+    'fullscreen=yes',
+    'titlebar=yes',
+    'scrollbars=yes'
+  ],
+  styles: [
+    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+    'https://unpkg.com/kidlat-css/css/kidlat.css',
+    "./landscape.css"
+  ]
+}
+Vue.use(VueHtmlToPaper, options);
+
+// 路由配置
 let routes = [
 {path:'/',component:dashboard},
 {path:'/home',component:dashboard},
@@ -74,9 +123,24 @@ let routes = [
 {path:'/profile',component:profile},
 {path:'/users',component:users},
 {path:'/passportdemo',component:pdemo},
-{path:'/js',component:js},
-{path:'/php',component:php},
-{path:'/other',component:other},
+{path:'/jspack',component:js},
+{path:'/phppack',component:php},
+{path:'/otherpack',component:other},
+{path:'/studynote',component:studynote},
+{path:'/autofocus',component:autofocus},
+{path:'/ref',component:ref},
+{path:'/loadingStyle',component:loadingStyle},
+{path:'/uploadfiles',component:uploadfiles},
+{path:'/loadimgs',component:loadimgs},
+{path:'/refhtml',component:refhtml},
+{path:'/refjs',component:refjs},
+{path:'/refphp',component:refphp},
+{path:'/refother',component:refother},
+{path:'/input/accept',component:inputacc},
+{path:'/btnstyle',component:btnstyle},
+{path:'/refcss',component:refcss},
+{path:'/divpos',component:divpos},
+{path:'/addlink',component:addlink},
 
 //配置404找不到页面
 {path: "/404",name: "notFound",component: notFound},
@@ -115,11 +179,13 @@ window.eventHandler=eventHandler
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+// // 请求拦截器，session过期检查错误码，根据需要跳转到登录页，待测试（php.ini中设置过期时间session.gc_maxlifetime = 144秒）参考（https://www.cnblogs.com/duanzhenzhen/p/10663496.html）****************************
+// 1. src目录下新建httpstatus.js文件，内容如下：
+// 2. app.js中引入
+// 3. 登录页设置login.vue
+
+
+// ********************************
 
 const app = new Vue({
     el: '#app',
@@ -127,11 +193,24 @@ const app = new Vue({
     data:{
       searchStr:'',
     },
+
+    components: {
+      progressbar,
+      expc,
+    },
     methods:{
-      searchFun(){
-        // console.log('搜索开始SSSSSSSSSSSS');
-        //注册全局搜索事件
+      // searchFun(){
+      //   // console.log('#搜索开始..............');
+      //   //注册全局搜索事件
+      //   eventHandler.$emit('searching');
+      // },
+      searchFunIns:_.debounce(()=>{
+        console.log('#搜索开始..............');
         eventHandler.$emit('searching');
+      },1000),
+      globalPrint(){
+        window.print();
+        // alert('globalPring');
       }
     }
 }).$mount('#app');

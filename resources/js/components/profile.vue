@@ -295,11 +295,15 @@
                         <has-error :form="form" field="email"></has-error>
                         </div>
                       </div>
+                      <div class="imgprev" v-if="form.photo">
+                        <label for="image"></label>
+                        <img :src="imgpreview" style="width: 100px;height: auto;border: 1px dashed red;padding: 20px">                      
+                      </div>
                       <!-- photo -->
                       <div class="form-group row">
                         <label for="photo" class="col-sm-2 control-label">Profile Photo</label>
                         <div class="col-sm-10">
-                          <input type="file" class="form-control" id="selectFile" name="photo" @change="putPhoto">
+                          <input type="file" class="form-control" id="selectFile" name="photo" @change="putPhoto" multiple accept="image/*">
                         </div>
                       </div>
 
@@ -460,6 +464,7 @@ Changes: Elsevier reserves the right to change, modify, add or remove portions o
                     photoname:'',
                 }),
                 avatarsrc:'',
+                imgpreview:'',
             }
         },
         methods:{ 
@@ -468,10 +473,24 @@ Changes: Elsevier reserves the right to change, modify, add or remove portions o
             },
             setAvatar:function(url){
                 this.avatarsrc=url;
-            },       
+            },
+            getObjectURL(file) {
+              var url = null ;
+              if (window.createObjectURL!=undefined) { // basic
+                url = window.createObjectURL(file) ;
+              } else if (window.URL!=undefined) { // mozilla(firefox)
+                url = window.URL.createObjectURL(file) ;
+              } else if (window.webkitURL!=undefined) { // webkit or chrome
+                url = window.webkitURL.createObjectURL(file) ;
+              }
+              console.log(url+'>>>>');
+              return url ;
+            },     
             putPhoto:function(e){
                 console.log('put photo ready for uploading............');
                 let file=e.target.files[0];
+                this.imgpreview = this.getObjectURL(file);//设置预览图片
+
                 // // 文件大小自动转换单位及数字file.size
                 // // @size 文件尺寸
                 // // @digital 结果小数位数

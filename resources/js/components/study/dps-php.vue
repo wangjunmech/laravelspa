@@ -12,7 +12,8 @@
                         <a href="https://github.com/JosephSilber/bouncer" class="list-group-item list-group-item-danger" target="_blank">权限控制： JosephSilber/bouncer </a>
                         <a href="https://github.com/Zizaco/entrust" class="list-group-item list-group-item-dark" target="_blank">权限控制：Zizaco/entrust</a>                        
                         <a href="https://github.com/kodeine/laravel-acl" class="list-group-item list-group-item-primary" target="_blank">权限控制： kodeine/laravel-acl</a> 
-                        <a href=" " class="list-group-item list-group-item-secondary" target="_blank">XXXX</a>                      
+                        <a href="https://github.com/paquettg/php-html-parser" class="list-group-item list-group-item-secondary" target="_blank">HTML DOM解析：paquettg /
+php-html-parser </a>                      
                         <a href=" " class="list-group-item list-group-item-danger" target="_blank">XXXX</a>
                         <a href=" " class="list-group-item list-group-item-dark" target="_blank">XXXX</a>
                         <a href=" " class="list-group-item list-group-item-primary" target="_blank">XXXX</a>  

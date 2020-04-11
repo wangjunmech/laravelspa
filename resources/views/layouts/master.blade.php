@@ -32,9 +32,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- SEARCH FORM -->
     <div class="">
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" v-model="searchStr" @keyup.enter="searchFun" placeholder="Search" aria-label="Search">
+        <!-- <input class="form-control form-control-navbar" type="search" v-model="searchStr" @keyup.enter="searchFun" placeholder="Search" aria-label="Search"> -->
+        <input class="form-control form-control-navbar" type="search" v-model="searchStr" @keyup="searchFunIns" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit" @click="searchFun">
+          <button class="btn btn-navbar" type="submit" @click="searchFunIns">
             <i class="fas fa-search"></i>
           </button>
         </div>
@@ -45,7 +46,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
+      <li class=" p-2">
+        <a href="#" @click.prevent="globalPrint()">
+          <i class="fa fa-print"></i>
+        </a>
+      </li>
       <li class="nav-item dropdown">
+        
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
           <span class="badge badge-danger navbar-badge">3</span>
@@ -215,49 +222,102 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <a href="/guessNum.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>guessNum.php</p>
-                </a>
-          
+                </a>          
               </li>
 
               <li class="nav-item">
                 <a href="/Audio.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Audio/Video</p>
-                </a>
-          
+                </a>          
               </li>
               
               <li class="nav-item">
-                <router-link to="/dashboard" class="nav-link">
+                <router-link to="/autofocus" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Layout ===</p>
-                </router-link>
-          
+                  <p>Autofocus Example</p>
+                </router-link>          
               </li>
+              
+              <li class="nav-item">
+                <router-link to="/ref" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ref</p>
+                </router-link>          
+              </li>
+              
+              <li class="nav-item">
+                <router-link to="/loadingStyle" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>LoadingStyle</p>
+                </router-link>          
+              </li>
+              
+              <li class="nav-item">
+                <router-link to="/uploadfiles" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Upload files</p>
+                </router-link>          
+              </li>
+              
+              <li class="nav-item">
+                <router-link to="/loadimgs" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Upload loadimgs</p>
+                </router-link>          
+              </li>
+              
+              <li class="nav-item">
+                <router-link to="/addlink" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Links to words</p>
+                </router-link>          
+              </li>
+
+
             </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie cyan"></i>
               <p>
-                Plastic Industrial
+                References
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item ">
-                <router-link to="/dashboard" class="nav-link">
+                <router-link to="/refhtml" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Injection Machine</p>
-                </router-link>
-          
+                  <p>Html</p>
+                </router-link>          
               </li>
               <li class="nav-item ">
-                <router-link to="/dashboard" class="nav-link">
+                <router-link to="/refcss" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Injection Vendor</p>
-                </router-link>
-          
+                  <p>CSS</p>
+                </router-link>          
+              </li>
+
+              <li class="nav-item ">
+                <router-link to="/refjs" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Javascript</p>
+                </router-link>          
+              </li>
+              
+              <li class="nav-item ">
+                <router-link to="/refphp" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>PHP</p>
+                </router-link>          
+              </li>
+              
+              <li class="nav-item ">
+                <router-link to="/refother" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>others</p>
+                </router-link>          
               </li>
             </ul>
           </li>
@@ -266,15 +326,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit green"></i>
               <p>
-                Forms
+                Study Notes
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <router-link to="/norouter" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard ===</p>
+                <router-link to="/studynote" class="nav-link">
+                  <i class="fa fa-bars"></i>
+                  <p>Notes</p>
                 </router-link>
           
               </li>
@@ -282,7 +342,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-table orange"></i>
+              <i class="nav-icon fas fa-table green"></i>
               <p>
                 DependancesTables
                 <i class="fas fa-angle-left right"></i>
@@ -290,14 +350,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item ">
-                <router-link to="/php" class="nav-link">
+                <router-link to="/phppack" class="nav-link">
                   <img src="/logos/php.jpg" alt="无图片显示" style="width: 30px;height: 30px">
                   <p>PHP</p>
                 </router-link>
           
               </li>
               <li class="nav-item ">
-                <router-link to="/js" class="nav-link">
+                <router-link to="/jspack" class="nav-link">
                   <img src="/logos/js.jpg" alt="无图片显示" style="width: 30px;height: 30px">
                   <p>JS</p>
                 </router-link>
@@ -306,7 +366,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
               </li>
               <li class="nav-item ">
-                <router-link to="/other" class="nav-link">
+                <router-link to="/otherpack" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Other</p>
                 </router-link>
@@ -322,7 +382,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
         <li class="nav-item">
         <a href="/logout" onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();" class="nav-link btn btn-danger"><i class="nav-icon fas fa-power-off"></i> <p>
+               document.getElementById('logout-form').submit();" class="nav-link btn btn-danger"><i class="nav-icon fas fa-power-off"></i> <p>
                 LogOut
               </p></a> 
         <form id="logout-form" action="/logout" method="POST" style="display: none;"><input type="hidden" name="_token" value="4cJYPte4b8DXT1d7L5b3sdrxuOh8F1Gg395I2VIx">@csrf</form>
@@ -346,17 +406,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <router-view>
-         
+        <router-view>         
         </router-view>       
         <vue-progress-bar></vue-progress-bar>
+        <div>
+          <div>测试组件progressbar</div>
+            <expc></expc>
+            <progressbar></progressbar>
+        </div>
+
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
 
 
   <!-- Main Footer -->
@@ -366,9 +430,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2014-<span id='year'></span>  
+
+
+      <a href="https://www.qualicrown.com">QualicrownEngineering</a></strong> All rights reserved.
   </footer>
 </div>
+      <script type="text/javascript">
+        function getYear(){
+            var time = new Date(); //当前时间戳 
+            var year = time.getFullYear();//当前年份 
+            var month = time.getMonth()+1; //当前月份
+            var Same_day = time.getDate(); //当前月份几号
+            var time1 = new Date(year,month,1-1);
+            var Last_day = time1.getDate();//当前月份的最后一天
+            var week = new Date(year,month-1,1).getDay();//获取当月1号在周几
+            time.setMonth(5)//设置月份5代表六月份   
+            return year;
+        }
+        var y=document.getElementById('year');
+        y.innerText=getYear();
+        // document.write(getYear());
+      </script>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
