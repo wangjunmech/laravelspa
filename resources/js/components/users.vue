@@ -68,8 +68,8 @@
                 </div>
               </div>
               <!-- /.card-body -->
-              <div class="card-footer justify-content-center" >
-                <pagination :data="users" @pagination-change-page="getResults" class="">
+              <div class="m-auto" >
+                <pagination :data="users" @pagination-change-page="getResults" >
                   <span slot="prev-nav">&lt;&lt; Previous</span>
                   <span slot="next-nav">Next &gt;&gt;</span>
                 </pagination>

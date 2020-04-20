@@ -1,5 +1,6 @@
 require('./bootstrap');
 window.Vue = require('vue');
+import login from './components/login.vue'
 import dashboard from './components/dashboard.vue'
 import profile from './components/profile.vue'
 import users from './components/users.vue'
@@ -24,6 +25,9 @@ import btnstyle from './components/ref/html/buttonStyle.vue'
 import refcss from './components/ref/refcss.vue'
 import divpos from './components/ref/css/divpos.vue'
 import addlink from './components/study/addlink.vue'
+import moldlist from './components/works/moldlist/moldlist.vue'
+import readingkeeper from './components/study/readingkeeper.vue'
+import readingrec from './components/study/readingrec.vue'
 
 
 
@@ -118,6 +122,7 @@ Vue.use(VueHtmlToPaper, options);
 // 路由配置
 let routes = [
 {path:'/',component:dashboard},
+{path:'/login',component:login},
 {path:'/home',component:dashboard},
 {path:'/dashboard',component:dashboard},
 {path:'/profile',component:profile},
@@ -141,6 +146,9 @@ let routes = [
 {path:'/refcss',component:refcss},
 {path:'/divpos',component:divpos},
 {path:'/addlink',component:addlink},
+{path:'/moldlist',component:moldlist},
+{path:'/rdkp',component:readingkeeper},
+{path:'/readingrec',component:readingrec},
 
 //配置404找不到页面
 {path: "/404",name: "notFound",component: notFound},
@@ -192,6 +200,7 @@ const app = new Vue({
     router,
     data:{
       searchStr:'',
+      sessionTimer:null,
     },
 
     components: {
@@ -207,10 +216,45 @@ const app = new Vue({
       searchFunIns:_.debounce(()=>{
         console.log('#搜索开始..............');
         eventHandler.$emit('searching');
-      },1000),
+        },1000),
       globalPrint(){
-        window.print();
-        // alert('globalPring');
-      }
-    }
+          window.print();
+          // alert('globalPring');
+        },
+      sessionListener(){
+          // console.log('全局监听鼠标事件..........');
+        let path = ['/login']
+        if(!path.includes(this.$route.path)) { //如果不是登录页面的话页面停止进行30分钟后清空session
+          clearTimeout(this.timmer);
+          this.init();
+        } 
+        },
+      init(){
+        this.timmer=setTimeout(()=>{    
+          //清除session
+          console.log(sessionStorage)
+          sessionStorage.removeItem("sessionData");
+          sessionStorage.clear();
+
+          // js跳转页面
+          // window.location='http://'+window.location.hostname;
+          // window.location.
+          //清除缓存          
+          // this.$cache.reset();
+          //跳往登录页面          
+          // this.$router.push({path: "/login",}); //跳转到单路由的登录页
+
+        },30*60*1000);//设置时间30分跳转到登录页并清空session
+        },
+
+    },
+
+ 
+   
+
+
+
+
+
+
 }).$mount('#app');

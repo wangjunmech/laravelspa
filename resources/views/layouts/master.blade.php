@@ -17,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </head>
 <body class="hold-transition sidebar-mini ">
-<div class="wrapper" id="app">
+<div class="wrapper" id="app" @click="sessionListener()" @mousemove="sessionListener()">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -192,7 +192,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
               </li>
               <li class="nav-item">
-                <a href="./VueStudy.html" class="nav-link">               
+                <a href="./studypages/VueStudy.html" class="nav-link">               
                   <p>
                   <i class="fa fa-cubes"></i>
                   VueStudy</p>
@@ -204,6 +204,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Passport demo</p>
                 </router-link>          
               </li>
+
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="fa fa-laptop red"></i>
+              <p>
+                Works
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link to="/moldlist" class="nav-link ">
+                  <span>
+                  <i class="fa fa-th-large"></i>
+                  MoldList</span>
+                </router-link>
+          
+              </li>
+ 
 
             </ul>
           </li>
@@ -219,7 +241,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/guessNum.php" class="nav-link">
+                <a href="/studypages/guessNum.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>guessNum.php</p>
                 </a>          
@@ -273,6 +295,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Add Links to words</p>
                 </router-link>          
               </li>
+              
+              <li class="nav-item">
+                <a href="./studypages/drag.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>dragResize</p>
+                </a>          
+              </li>
+
 
 
             </ul>
@@ -338,6 +368,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </router-link>
           
               </li>
+            <li class="nav-item">
+                <router-link to="/rdkp" class="nav-link">
+                  <i class="fa fa-rocket yellow"></i>
+                  <p>Reading Keeper</p>
+                </router-link>
+          
+              </li>
+            <li class="nav-item">
+                <router-link to="/readingrec" class="nav-link">
+                  <i class="fa fa-rocket yellow"></i>
+                  <p>My reading</p>
+                </router-link>
+          
+              </li>
+ 
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -409,11 +454,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <router-view>         
         </router-view>       
         <vue-progress-bar></vue-progress-bar>
-        <div>
+<!--         <div>
           <div>测试组件progressbar</div>
             <expc></expc>
             <progressbar></progressbar>
-        </div>
+        </div> -->
 
         <!-- /.row -->
       </div><!-- /.container-fluid -->

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>拖动缩放</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+	.dragResize{border:1px black solid;width:300px;height:200px;background-color: white;position:absolute;outline:none;user-select:none;/*overflow:hidden;*/;}
+	.dragResize:focus .dragger-show{display:block;}
+    /* 移动 */
+    .drag-header{background-color:#bbb;width:100%;height:30px;text-align:center;line-height:30px;background:linear-gradient(to top, red, orange, yellow, green, blue, indigo, violet);opacity: 0.5}
+	.drag-header:focus .dragger-show{display:block;}	
+ 
+	/* 八个方位的div控制 */
+	.dragger{width:5px;height:5px;border:1px black solid;background-color:red;position:absolute;display:none;}
+	/* 八个方位的小手各自的div */
+	.dragger-n{cursor:n-resize;left:50%;top:-7px;margin-left:-4px;}
+	.dragger-ne{cursor:ne-resize;top:-7px;right:-7px;}
+	.dragger-e{cursor:e-resize;top:50%;right:-7px;margin-top:-4px;}
+	.dragger-se{cursor:se-resize;bottom:-7px;right:-7px;}
+	.dragger-s{cursor:s-resize;bottom:-7px;left:50%;margin-left:-4px;}
+	.dragger-sw{cursor:sw-resize;left:-7px;bottom:-7px;}
+	.dragger-w{cursor:w-resize;left:-7px;top:50%;margin-top:-4px;}
+	.dragger-nw{cursor:nw-resize;left:-7px;top:-7px;}
+	
+</style>
+</head>
+<body>
+	
+<div class="dragResize" tabIndex="0" style="z-index:3">
+    <div class="drag-header">Header1
+        <div class="dragger dragger-show dragger-n"></div>
+        <div class="dragger dragger-show dragger-s"></div>
+        <div class="dragger dragger-show dragger-w"></div>
+        <div class="dragger dragger-show dragger-e"></div>
+        <div class="dragger dragger-show dragger-nw"></div>
+        <div class="dragger dragger-show dragger-ne"></div>
+        <div class="dragger dragger-show dragger-sw"></div>
+        <div class="dragger dragger-show dragger-se"></div>
+    </div>	
+	 <div>Content1</div>	
+</div>
+ 
+<div class="dragResize" tabIndex="0" style="z-index:2">
+    <div class="drag-header">Header2
+        <div class="dragger dragger-show dragger-n"></div>
+        <div class="dragger dragger-show dragger-s"></div>
+        <div class="dragger dragger-show dragger-w"></div>
+        <div class="dragger dragger-show dragger-e"></div>
+        <div class="dragger dragger-show dragger-nw"></div>
+        <div class="dragger dragger-show dragger-ne"></div>
+        <div class="dragger dragger-show dragger-sw"></div>
+        <div class="dragger dragger-show dragger-se"></div>
+    </div>	
+	 <div>Content2</div>	
+</div> 
+
+<div class="dragResize" tabIndex="0" style="z-index:1">
+    <div class="drag-header">Header3
+        <div class="dragger dragger-show dragger-n"></div>
+        <div class="dragger dragger-show dragger-s"></div>
+        <div class="dragger dragger-show dragger-w"></div>
+        <div class="dragger dragger-show dragger-e"></div>
+        <div class="dragger dragger-show dragger-nw"></div>
+        <div class="dragger dragger-show dragger-ne"></div>
+        <div class="dragger dragger-show dragger-sw"></div>
+        <div class="dragger dragger-show dragger-se"></div>
+    </div>	
+	 <div>Content3</div>	
+</div>
+ 
+ 
+</body>
+</html>
+ 
+<script>
+
+// 求数组元素最大值函数
+Array.prototype.max = function() { 
+var max = this[0];
+var len = this.length; 
+for (var i = 1; i < len; i++){ 
+if (this[i] > max) { 
+max = this[i]; 
+} 
+} 
+return max;
+}
+
+//监控页面上所有div点击事件
+var $dr = $("div[class^='dragResize']");
+
+$dr.mousedown(function(e) {
+	var zidexArr = [];
+    var ele = $(this);
+	document.onmousemove = function(e){
+		enableMove(ele[0],e);
+	}
+	var divs = $('.dragResize');//选择所有对象
+
+	// //把激活的元素置到顶层
+	divs.each(function(){
+		// zidexArr.push(parseInt($(this).css('z-index')));
+		zidexArr.push($(this).css('z-index'));
+	})
+	var m = zidexArr.max();//最大的z-index数值
+	var	oz=$(this).css('z-index');//当前元素的zindex
+	// var ozindex =divs.css()
+	var origin = $(this);
+	divs.each(function(){
+        if($(this).css('z-index')==m){
+        	// console.log($(this));
+            $(this).css('z-index',oz);//把当前层的zindex给到原来zindex=最大层数的元素
+            origin.css('z-index',m)//把当前选择的元素调整最前面
+            $(this).children('.drag-header').css("opacity",0.5)
+            origin.children('.drag-header').css("opacity",1)
+            console.log($(this).children('.drag-header').css("opacity"));
+        }
+	})
+	// //End****把激活的元素置到顶层
+
+});
+$dr.mouseup(function(e) {
+	// var dheader = $(this).children('.drag-header');
+	// dheader.css("opacity",0.5);
+	// console.log(e.target); 
+	// console.log(this); 
+
+	// this.css(); 
+
+
+});
+
+var	movingEle = {              
+		    // init drag start style
+			width  : 300,         
+			height : 200,         
+			top    : 0 ,          
+			right  : 0 ,         
+			bottom : 0 ,         
+			left   : 0 ,          
+			minW    : 150 ,        
+			minH    : 100 ,        
+			buttomTarget : null,  
+			moveTarget : null,
+			zidex:0,		
+	}
+
+function drmove(divEle,e){
+	// minimum div size
+	this.minW = movingEle.minW;
+	this.minH = movingEle.minH;
+	
+	// 所有元素
+	this.divEle    = divEle;
+	this.textEle   = divEle.lastElementChild; // testArea element
+ 
+	// 最大div的style
+	this.dragDiv  = this.divEle.style;
+	this.divWidth  = this.dragDiv.width;
+	this.divHeight = this.dragDiv.height;
+	this.divTop    = this.dragDiv.top;
+	this.divRight  = this.dragDiv.right;
+	this.divBottom = this.dragDiv.bottom;
+	this.divLeft   = this.dragDiv.left;
+	
+	// 头部移动高度
+	// this.hreadHeight = movingEle.moveHeight;
+	
+	// textarray的style
+	this.textStyle   = this.textEle.style;
+	
+	// 鼠标事件event
+	this.e = e;
+	this.x = e.movementX;
+	this.y = e.movementY;
+	this.moveTarget = movingEle.moveTarget; // 正在移动的target
+ 
+	// 修改属性的值  
+	// [这里以后就不用再if判断了,就连html里的标签都是js生成的直接用js赋值宽度就行]
+	this.divWidth  = (this.divWidth   === "") ? 
+	    movingEle.width    : parseInt(this.divWidth.replace("px",""));
+ 
+	this.divHeight = (this.divHeight  === "") ? 
+	    movingEle.height   : parseInt(this.divHeight.replace("px",""));
+ 
+	this.divTop    = (this.divTop     === "") ? 
+	    movingEle.top      : parseInt(this.divTop.replace("px",""));
+ 
+	this.divRight  = (this.divRight   === "") ? 
+	    movingEle.right    : parseInt(this.divRight.replace("px",""));
+ 
+	this.divBottom = (this.divBottom  === "") ? 
+	    movingEle.bottom   : parseInt(this.divBottom.replace("px",""));
+ 
+	this.divLeft   = (this.divLeft    === "") ? 
+	    movingEle.left     : parseInt(this.divLeft.replace("px",""));
+		return false;
+	
+}
+ 
+/**
+ * @param  {[divElement]}  divEle [需要移动的div,最外层的div]
+ * @param  {[EventObject]} e      [event type='move']
+ * @return {[void]}   
+ */
+function enableMove(divEle,e){
+	if(e.buttons !== 1){                               
+		movingEle.moveTarget = null;
+		return;
+	}else if(movingEle.moveTarget === null){  
+		movingEle.moveTarget = e.target;        
+	}
+	var move = divEle;                                               
+	var action = divEle.getElementsByClassName("dragger");           
+	switch(movingEle.moveTarget){
+		case move      : new ActMove(divEle,e,move);         return;     
+		case action[0] : new ActTop(divEle,e,action[0]);     return;  
+   		case action[1] : new ActBottom(divEle,e,action[1]);  return;  
+   		case action[2] : new ActLeft(divEle,e,action[2]);    return;     
+		case action[3] : new ActRight(divEle,e,action[3]);   return;  
+   		case action[4] : new ActTopL(divEle,e,action[4]);    return;     
+		case action[5] : new ActTopR(divEle,e,action[5]);    return;     
+		case action[6] : new ActBottomL(divEle,e,action[6]); return;     
+		case action[7] : new ActBottomR(divEle,e,action[7]); return;     
+		default : new ActMove(divEle,e,move); 	
+    	}
+	return false;
+
+}
+ 
+function ActMove(divEle,e,thisEle){ 
+	drmove.apply(this,arguments); 
+	var top  = this.divTop + this.y;
+	var left = this.divLeft + this.x;
+	this.dragDiv.top  = top + "px";
+	this.dragDiv.left = left + "px";
+	return false;
+
+}
+ 
+function ActTop(divEle,e,thisEle){ 
+	drmove.apply(this,arguments);
+	var top    = this.divTop;
+	var height = this.divHeight + (-this.y);
+	if(height < this.minH)
+	    height = this.minH;
+	else
+	    top = this.divTop + this.y;
+	this.dragDiv.top    = top + "px";
+	this.dragDiv.height = height + "px";
+	this.textStyle.height = (height - this.hreadHeight) + "px";
+	return false;
+
+}
+ 
+function ActTopR(divEle,e,thisEle){ 
+	drmove.apply(this,arguments);
+	var top    = this.divTop;
+	var width  = this.divWidth + this.x;
+	var height = this.divHeight + (-this.y);
+	if(height < this.minH)
+	    height = this.minH;
+	if(width < this.minW)
+	    width = this.minW;
+	else
+	    top = this.divTop + this.y;
+	this.dragDiv.top    = top + "px";
+	this.dragDiv.width  = width + "px";
+	this.dragDiv.height = height + "px";
+	this.textStyle.height = (height - this.hreadHeight) + "px";
+	return false;
+
+}
+ 
+function ActRight(divEle,e,thisEle){  
+	drmove.apply(this,arguments);
+	var width   = this.divWidth + this.x;
+	if(width < this.minW)
+	    width = this.minW;
+	this.dragDiv.width   = width + "px";
+	return false;
+
+}
+ 
+function ActBottomR(divEle,e,thisEle){ 
+	drmove.apply(this,arguments);
+	var width  = this.divWidth + this.x;
+	var height = this.divHeight + this.y;
+	if(height < this.minH)
+	    height = this.minH;
+	if(width < this.minW)
+	    width = this.minW;
+	this.dragDiv.width  = width + "px";
+	this.dragDiv.height = height + "px";
+	this.textStyle.height = (height - this.hreadHeight) + "px";
+	return false;
+}
+ 
+function ActBottom(divEle,e,thisEle){ 
+	drmove.apply(this,arguments);
+	var height = this.divHeight + this.y;
+	if(height < this.minH)
+	    height = this.minH;
+	this.textStyle.height = (height - this.hreadHeight) + "px";
+	this.dragDiv.height = height + "px";
+	return false;
+
+}
+ 
+function ActBottomL(divEle,e,thisEle){ 
+	drmove.apply(this,arguments);
+	var left   = this.divLeft;
+	var width  = this.divWidth + (-this.x);
+	var height = this.divHeight + this.y;
+	if(height < this.minH)
+	    height = this.minH;
+	if(width < this.minW)
+		width = this.minW;
+	else
+		left = this.divLeft + this.x;
+	this.dragDiv.width  = width + "px";
+	this.dragDiv.height = height + "px";
+	this.dragDiv.left = left + "px";
+	this.textStyle.height = (height - this.hreadHeight) + "px";
+	return false;
+
+}
+ 
+function ActLeft(divEle,e,thisEle){ 
+	drmove.apply(this,arguments);
+	var left    = this.divLeft;
+	var width   = this.divWidth + (-this.x);
+	if(width < this.minW)
+	    width = this.minW;
+	else
+	    left = this.divLeft + this.x;
+	this.dragDiv.left    = left + "px";
+	this.dragDiv.width   = width + "px";
+	return false;
+
+}
+ 
+function ActTopL(divEle,e,thisEle){ 
+	drmove.apply(this,arguments);
+	var top    = this.divTop;
+	var left   = this.divLeft;
+	var width  = this.divWidth + (-this.x);
+	var height = this.divHeight + (-this.y);
+	if(height < this.minH)
+	    height = this.minH;
+	else
+	    top = this.divTop + this.y;
+	if(width < this.minW)
+	    width = this.minW;
+	else
+	    left = this.divLeft + this.x;
+	this.dragDiv.top    = top + "px";
+	this.dragDiv.left   = left + "px";
+	this.dragDiv.width  = width + "px";
+	this.dragDiv.height = height + "px";
+	this.textStyle.height = (height - this.hreadHeight) + "px";
+	return false;
+
+}
+</script>

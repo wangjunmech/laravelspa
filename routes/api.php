@@ -27,3 +27,8 @@ Route::get('note','API\FileController@index');//读取文件
 Route::post('putnote','API\FileController@putnote');//写入文件
 Route::post('loadimgs','API\FileController@loadimgs');//上传图片
 Route::get('dict','API\DictController@search');//查询词典
+Route::post('dict','API\DictController@savearticle');//保存阅读
+Route::get('articles','API\DictController@articlelist');//查询阅读
+Route::apiResources([
+    'tools' => 'API\ToolsController',
+]);
