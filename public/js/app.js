@@ -5423,10 +5423,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -11528,7 +11524,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\na[data-v-bfa35856] {\n    text-decoration: none;\n}\n/*正常的未被访问过的链接*/\na[data-v-bfa35856]:link {\n    text-decoration: none;\n}\n/*已经访问过的链接*/\na[data-v-bfa35856]:visited {\n    text-decoration: none;\n}\n/*鼠标划过(停留)的链接*/\na[data-v-bfa35856]:hover {\n    text-decoration: none;\n    color: red;\n}\n/* 正在点击的链接，鼠标在元素上按下还没有松开*/\na[data-v-bfa35856]:active {\n    text-decoration: none;\n}\n/* 获得焦点的时候 鼠标松开时显示的颜色*/\na[data-v-bfa35856]:focus {\n    text-decoration: none;\n}\n\n", ""]);
+exports.push([module.i, "\na[data-v-bfa35856] {\n    text-decoration: none;\n}\n/*正常的未被访问过的链接*/\na[data-v-bfa35856]:link {\n    text-decoration: none;\n}\n/*已经访问过的链接*/\na[data-v-bfa35856]:visited {\n    text-decoration: none;\n}\n/*鼠标划过(停留)的链接*/\na[data-v-bfa35856]:hover {\n    text-decoration: none;\n    color: red;\n}\n/* 正在点击的链接，鼠标在元素上按下还没有松开*/\na[data-v-bfa35856]:active {\n    text-decoration: none;\n}\n/* 获得焦点的时候 鼠标松开时显示的颜色*/\na[data-v-bfa35856]:focus {\n    text-decoration: none;\n}\n@media (min-width: 1600px) {\n.container[data-v-bfa35856]{\n        max-width: 1800px;\n}\n}\n", ""]);
 
 // exports
 
@@ -53118,7 +53114,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "col-md-12 mt-2" }, [
+    _c("div", {}, [
       _c("div", { staticClass: "card" }, [
         _vm._m(0),
         _vm._v(" "),
@@ -53151,151 +53147,140 @@ var render = function() {
               [_vm._m(1), _vm._v(" "), _vm._m(2)]
             ),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "card-body table-responsive p-0",
-                attrs: { id: "printMe" }
-              },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card-body",
-                    staticStyle: { position: "relative" }
-                  },
-                  [
-                    _c("div", [
-                      _c(
-                        "table",
-                        {
-                          staticClass: "table table-hover",
-                          staticStyle: {
-                            "table-layout": "fixed",
-                            "word-break": "break-all",
-                            "word-wrap": "break-all"
-                          }
-                        },
-                        [
-                          _vm._m(3),
-                          _vm._v(" "),
-                          _c(
-                            "tbody",
-                            _vm._l(_vm.data.data, function(article) {
-                              return _c("tr", { key: article.id }, [
-                                _c("td", [_vm._v(_vm._s(article.id))]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(_vm._s(article.articletitle))
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(article.newwords))]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(
-                                    _vm._s(_vm.numstrwords(article.newwords))
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "span",
-                                    { staticClass: "tag tag-success" },
-                                    [_vm._v(_vm._s(article.created_at))]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: {
-                                        href: "#",
-                                        "data-toggle": "modal",
-                                        index: "article.id",
-                                        "data-target": "#exampleModal"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.fillmodal(
-                                            article.id,
-                                            article.articletitle,
-                                            article.article,
-                                            article.newwords
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "fa fa-eye fa-2x blue",
-                                        attrs: { title: "read again!" }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v("   \n                    "),
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: {
-                                        href: "#",
-                                        "data-toggle": "modal",
-                                        index: "article.id",
-                                        "data-target": "#exampleModal"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.rewords(article.newwords)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "fa fa-asterisk",
-                                        attrs: { title: "Review words!" }
-                                      })
-                                    ]
-                                  )
-                                ])
-                              ])
-                            }),
-                            0
-                          )
-                        ]
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "m-auto mt-2" },
-                  [
+            _c("div", { staticClass: "card-body table-responsive p-0" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "card-body",
+                  staticStyle: { position: "relative" }
+                },
+                [
+                  _c("div", [
                     _c(
-                      "pagination",
+                      "table",
                       {
-                        attrs: { data: _vm.data, limit: "2", align: "center" },
-                        on: { "pagination-change-page": _vm.getResults }
+                        staticClass: "table table-hover",
+                        staticStyle: {
+                          "table-layout": "fixed",
+                          "word-break": "break-all",
+                          "word-wrap": "break-all"
+                        }
                       },
                       [
-                        _c(
-                          "span",
-                          { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
-                          [_vm._v("<< Previous")]
-                        ),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c(
-                          "span",
-                          { attrs: { slot: "next-nav" }, slot: "next-nav" },
-                          [_vm._v("Next >>")]
+                          "tbody",
+                          _vm._l(_vm.data.data, function(article) {
+                            return _c("tr", { key: article.id }, [
+                              _c("td", [_vm._v(_vm._s(article.id))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(article.articletitle))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(article.newwords))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(
+                                  _vm._s(_vm.numstrwords(article.newwords))
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("span", { staticClass: "tag tag-success" }, [
+                                  _vm._v(_vm._s(article.created_at))
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: "#",
+                                      "data-toggle": "modal",
+                                      index: "article.id",
+                                      "data-target": "#exampleModal"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.fillmodal(
+                                          article.id,
+                                          article.articletitle,
+                                          article.article,
+                                          article.newwords
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-eye fa-2x blue",
+                                      attrs: { title: "read again!" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v("   \n                    "),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: "#",
+                                      "data-toggle": "modal",
+                                      index: "article.id",
+                                      "data-target": "#exampleModal"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.rewords(article.newwords)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-asterisk",
+                                      attrs: { title: "Review words!" }
+                                    })
+                                  ]
+                                )
+                              ])
+                            ])
+                          }),
+                          0
                         )
                       ]
                     )
-                  ],
-                  1
-                )
-              ]
-            ),
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "m-auto mt-2" },
+                [
+                  _c(
+                    "pagination",
+                    {
+                      attrs: { data: _vm.data, limit: "2", align: "center" },
+                      on: { "pagination-change-page": _vm.getResults }
+                    },
+                    [
+                      _c(
+                        "span",
+                        { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
+                        [_vm._v("<< Previous")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        { attrs: { slot: "next-nav" }, slot: "next-nav" },
+                        [_vm._v("Next >>")]
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ]),
             _vm._v(" "),
             _vm._m(4)
           ]

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <div class="col-md-12 mt-2">
+      <div class="">
         <div class="card">
           <div class="card-header">
             <h1 class="text-center">Reading Records</h1>     
@@ -27,10 +27,9 @@
                           <span></span>
                 </div>
               </div>
-              <div id="printMe" class="card-body table-responsive p-0">
+              <div class="card-body table-responsive p-0">
                 <div style="position: relative;" class="card-body"> 
-                <div>  
-                
+                <div> 
                 <table class="table table-hover" style="table-layout: fixed;word-break:break-all; word-wrap:break-all;">
                   <thead>
                     <tr>
@@ -56,7 +55,7 @@
                         <a href="#" @click="rewords(article.newwords)" data-toggle="modal" index="article.id" data-target="#exampleModal"> 
                         <i class="fa fa-asterisk" title="Review words!"></i>
                         </a>
-      
+
                     </td>
                     </tr>
 
@@ -64,15 +63,12 @@
                 </table>
                 </div>           
                 </div>
-
-
               <div class="m-auto mt-2">
                 <pagination :data="data" @pagination-change-page="getResults" limit='2' align="center" >
                   <span slot="prev-nav">&lt;&lt; Previous</span>
                   <span slot="next-nav">Next &gt;&gt;</span>
                 </pagination>
               </div>
-
               </div>
 
 
@@ -243,8 +239,6 @@
  
  
         },
-
-
         mounted() {
             this.loadingStatus=true;
             // this.readinglist();
@@ -282,5 +276,9 @@ a:active {
 a:focus {
     text-decoration: none;
 }
-
+@media (min-width: 1600px) {
+    .container{
+        max-width: 1800px;
+    }
+}
 </style>
