@@ -51,64 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <i class="fa fa-print"></i>
         </a>
       </li>
-      <li class="nav-item dropdown">
-        
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
+      
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -137,8 +80,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
-            class="fas fa-th-large"></i></a>
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
+          <i class="fas fa-th-large"></i>
+        </a>
       </li>
     </ul>
   </nav>
@@ -170,7 +114,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
 
          <!-- Sidebar Menu -->
-      <nav class="mt-2 " >
+      <nav id="menuLeft" class="mt-2 " >
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -178,7 +122,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt blue"></i>
               <p>
-                Dashboard
+                Dashboard                
+                <i class="fas fa-angle-left right"></i>                
+                <span class="badge badge-info right">6</span>
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -212,7 +158,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link">
               <i class="fa fa-laptop red"></i>
               <p>
-                Works
+                Works          
+                <i class="fas fa-angle-left right"></i>                
+                <span class="badge badge-info right">6</span>
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -235,7 +183,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <i class="nav-icon fas fa-copy indigo"></i>
               <p>
                 StudyExamples
-                <i class="fas fa-angle-left right"></i>
+                <i class="fas fa-angle-left right"></i>                
                 <span class="badge badge-info right">6</span>
               </p>
             </a>
@@ -311,7 +259,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie cyan"></i>
               <p>
-                References
+                References          
+                <i class="fas fa-angle-left right"></i>                
+                <span class="badge badge-info right">6</span>
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -346,7 +296,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item ">
                 <router-link to="/refother" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>others</p>
+                  <p>Colors</p>
                 </router-link>          
               </li>
             </ul>
@@ -356,7 +306,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit green"></i>
               <p>
-                Study Notes
+                Study Notes          
+                <i class="fas fa-angle-left right"></i>                
+                <span class="badge badge-info right">6</span>
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -365,31 +317,66 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <router-link to="/studynote" class="nav-link">
                   <i class="fa fa-bars"></i>
                   <p>Notes</p>
-                </router-link>
-          
+                </router-link>          
               </li>
             <li class="nav-item">
                 <router-link to="/rdkp" class="nav-link">
                   <i class="fa fa-rocket yellow"></i>
                   <p>Reading Keeper</p>
-                </router-link>
-          
+                </router-link>          
               </li>
             <li class="nav-item">
                 <router-link to="/readingrec" class="nav-link">
                   <i class="fa fa-rocket yellow"></i>
                   <p>My reading</p>
-                </router-link>
-          
+                </router-link>          
               </li>
- 
+            <li class="nav-item">
+                <router-link to="/vrecorder" class="nav-link">
+                  <i class="fa fa-rocket yellow"></i>
+                  <p>Recorder</p>
+                </router-link>          
+              </li>
+            <li class="nav-item">
+                <router-link to="/vrecorder2" class="nav-link">
+                  <i class="fa fa-rocket yellow"></i>
+                  <p>Recorder2</p>
+                </router-link>          
+              </li>
+
+
+              <li class="nav-item">
+                <a href="./recorder/index.html" class="nav-link">
+                  <i class="fa fa-rocket yellow"></i>
+                  <p>LocalRecorder</p>
+                </a>          
+              </li>
+
+            <li class="nav-item">
+                <router-link to="/vdeliver" class="nav-link">
+                  <i class="fa fa-rocket yellow"></i>
+                  <p>ValDeliver</p>
+                </router-link>          
+              </li>
+
+            <li class="nav-item">
+                <router-link to="/comp3" class="nav-link">
+                  <i class="fa fa-rocket yellow"></i>
+                  <p>Comp3</p>
+                </router-link>          
+              </li>
+
+
+
             </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table green"></i>
               <p>
-                DependancesTables
+                DependancesTables          
+                <i class="fas fa-angle-left right"></i>                
+                <span class="badge badge-info right">6</span>
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -422,7 +409,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="nav-item">
                 <router-link to="/profile" class="nav-link">
                   <i class="fa fa-user fa-fw yellow"></i>
-                  <p>Profile</p>
+                  <p>Profile          
+                <i class="fas fa-angle-left right"></i>                
+                <span class="badge badge-info right">6</span>
+              </p>
                 </router-link>          
               </li>
         <li class="nav-item">
@@ -496,12 +486,71 @@ scratch. This page gets rid of all links and provides the needed markup only.
         var y=document.getElementById('year');
         y.innerText=getYear();
         // document.write(getYear());
+
+        // ***********设置左侧导航菜单栏显示子菜单的数量
+        function setMenubadgeNum(){
+          var nav = document.getElementById('menuLeft');
+          var navtree = nav.getElementsByClassName('has-treeview');
+          var navtreeNum = navtree.length;
+          for(var n=0;n<navtreeNum;n++){  
+          var submenu = navtree[n].getElementsByClassName('nav-item');
+          var submenuNum = submenu.length;
+          // console.log(submenuNum+'****')
+          var showNum = navtree[n].getElementsByClassName('badge-info');
+          showNum[0].innerText=submenuNum;
+          }
+
+        }
+        setMenubadgeNum()
+
+
+        // console.log(navtreeNum+'++++++++'+submenuNum);
+
+        // ************************
+        function copyToClipboard(txt) {
+           if (window.clipboardData) {
+            window.clipboardData.clearData();
+            clipboardData.setData("Text", txt);
+            alert("复制成功！");
+         
+           } else if (navigator.userAgent.indexOf("Opera") != -1) {
+            window.location = txt;
+           } else if (window.netscape) {
+            try {
+             netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+            } catch (e) {
+             alert("被浏览器拒绝！\n请在浏览器地址栏输入'about:config'并回车\n然后将 'signed.applets.codebase_principal_support'设置为'true'");
+            }
+            var clip = Components.classes['@mozilla.org/widget/clipboard;1'].createInstance(Components.interfaces.nsIClipboard);
+            if (!clip)
+             return;
+            var trans = Components.classes['@mozilla.org/widget/transferable;1'].createInstance(Components.interfaces.nsITransferable);
+            if (!trans)
+             return;
+            trans.addDataFlavor("text/unicode");
+            var str = new Object();
+            var len = new Object();
+            var str = Components.classes["@mozilla.org/supports-string;1"].createInstance(Components.interfaces.nsISupportsString);
+            var copytext = txt;
+            str.data = copytext;
+            trans.setTransferData("text/unicode", str, copytext.length * 2);
+            var clipid = Components.interfaces.nsIClipboard;
+            if (!clip)
+             return false;
+            clip.setData(trans, null, clipid.kGlobalClipboard);
+            alert("复制成功！");
+           }
+          }
+
+
+
+
+
       </script>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
 <script src="/js/app.js"></script>
-
 <!-- jQuery -->
 <!-- ************* 为啥引入会在控制台报错(SyntaxError: expected expression, got '<')*********** -->
 <!-- <script src="plugins/jquery/jquery.min.js"></script> -->

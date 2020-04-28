@@ -64,7 +64,7 @@
                 </div>           
                 </div>
               <div class="m-auto mt-2">
-                <pagination :data="data" @pagination-change-page="getResults" limit='2' align="center" >
+                <pagination :data="data" @pagination-change-page="getResults" :limit="limit" align="center" >
                   <span slot="prev-nav">&lt;&lt; Previous</span>
                   <span slot="next-nav">Next &gt;&gt;</span>
                 </pagination>
@@ -113,6 +113,7 @@
         data() {
             return {
                 loadingStatus:false,
+                limit:10,
                 data:{},
                 form:new Form({
                         articletitle:'',
@@ -247,6 +248,31 @@
         },
         created() {
             console.log('Component created.............')
+
+            // // #################----监听触发父组件中的搜索事件----####################
+            eventHandler.$on('searching',()=>{
+                // console.log('搜索用户表'+kwords);
+              let kwords=this.$parent.searchStr;
+                axios.get('api/articles?k='+kwords)
+                .then((response)=>{
+                  alert('搜索文章待完善')
+                  console.log('搜索文章后返回****************')
+                  // console.log(response.data);
+                  this.data=response;                  
+                })
+                .then(()=>{
+                  // console.log((JSON.stringify(this.users.data) ));
+                  console.log('没有搜索到返回提示****************')
+                  if(this.data.data==''){
+                    swalt.fire(
+                      ' Search Result Empty',
+                      'Nothing found!!!',
+                      'warning'
+                              )
+                  }
+                })
+                .catch(()=>{})
+            })
         }
     }
 
@@ -276,6 +302,8 @@ a:active {
 a:focus {
     text-decoration: none;
 }
+
+
 @media (min-width: 1600px) {
     .container{
         max-width: 1800px;

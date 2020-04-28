@@ -1,5 +1,8 @@
 require('./bootstrap');
 window.Vue = require('vue');
+import Custfuns from './function/customizedFunctions.js'
+Vue.use(Custfuns);
+import Clipboard from 'clipboard'
 import login from './components/login.vue'
 import dashboard from './components/dashboard.vue'
 import profile from './components/profile.vue'
@@ -28,7 +31,10 @@ import addlink from './components/study/addlink.vue'
 import moldlist from './components/works/moldlist/moldlist.vue'
 import readingkeeper from './components/study/readingkeeper.vue'
 import readingrec from './components/study/readingrec.vue'
-
+import recorder from './components/study/recorder.vue'
+import recorder2 from './components/study/recorder2.vue'
+import vdeliver from './components/vdeliver.vue'
+// import comp3 from './../components/sub/comp3'
 
 
 // 进度表插件：http://hilongjw.github.io/vue-progressbar/
@@ -149,6 +155,10 @@ let routes = [
 {path:'/moldlist',component:moldlist},
 {path:'/rdkp',component:readingkeeper},
 {path:'/readingrec',component:readingrec},
+{path:'/vrecorder',component:recorder},
+{path:'/vrecorder2',component:recorder2},
+{path:'/vdeliver',component:vdeliver},
+// {path:'/comp3',component:comp3},
 
 //配置404找不到页面
 {path: "/404",name: "notFound",component: notFound},

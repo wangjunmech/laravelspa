@@ -21,8 +21,8 @@
 
                         <a href="https://laravel-vue-pagination.now.sh/" class="list-group-item list-group-item-secondary" target="_blank">分页插件:gilbitron /
 laravel-vue-pagination </a>    
-                        <a href=" " class="list-group-item list-group-item-warning" target="_blank">XXXX </a>    
-                        <a href=" " class="list-group-item list-group-item-danger" target="_blank">XXXX </a>    
+                        <a href="http://vegetable.zhuyuntao.cn/Recorder/start.html" class="list-group-item list-group-item-warning" target="_blank">录音插件：js-audio-recorder </a>    
+                        <a href="https://clipboardjs.com/" class="list-group-item list-group-item-danger" target="_blank">剪贴板插件：clipboardjs </a>    
                         <a href=" " class="list-group-item list-group-item-dark" target="_blank">XXXX </a>    
                         <a href=" " class="list-group-item list-group-item-primary" target="_blank">XXXX </a>                        
                     </div>
