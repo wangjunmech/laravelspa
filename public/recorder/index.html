@@ -6,220 +6,203 @@
     <title></title>
   </head>
   <body>
-    <h1>Audio</h1>
+    <h1>  <a href="https://github.com/TalAter/annyang/blob/master/docs/README.md" target="_blank">使用annyang语音指令识别</a></h1>
+    <audio id='ddsound' src='./annyang/answer/xgzc.wav'   align='center' border='0' width='1' height='1' loop='false'></audio>
 
-    <button id="startRecordingButton">Start recording</button>
-    <button id="stopRecordingButton">Stop recording</button>
-    <button id="playButton">Play</button>
-    <button id="downloadButton">Download</button>
+    <div id='board'>
+      
+    </div>
+<input type="button" id="btnplay" value="声音" onclick="playSound()"> 
+<input type="button" id="btnpause" value="停止" onclick="playPause()"> 
 
-    <div id="info"></div>
+<hr>
+<div class="voiceinator">
+  <h1>SpeechSynthesisUtterance文字转语音播放</h1>
+  
+  <select name="voice" id="voices">
+    <option value="">Select A Voice</option>
+  </select>
+  
+  <label for="rate">Rate:</label>
+  <input name="rate" type="range" min="0" max="3" value="1" step="0.1">
+  
+  <label for="pitch">Pitch:</label>
+  <input name="pitch" type="range" min="0" max="2" step="0.1"> 
 
-    <script>
-      var start = 0;
-      var SAMPLE_RATE = 44100;
-      String.prototype.toHHMMSS = function() {
-        var sec_num = parseInt(this, 10); // don't forget the second param
-        var hours = Math.floor(sec_num / 3600);
-        var minutes = Math.floor((sec_num - hours * 3600) / 60);
-        var seconds = sec_num - hours * 3600 - minutes * 60;
+  <label for="volume">Volume:</label>
+  <input name="volume" type="range" min="0" max="1" step="0.1">
+  
+  <textarea id="answer" name="text">你好 给你点?</textarea>
+  
+  <button id="stop">Stop!</button>
+  <button id="speak">Speak</button>
+</div>
 
-        if (hours < 10) {
-          hours = "0" + hours;
-        }
-        if (minutes < 10) {
-          minutes = "0" + minutes;
-        }
-        if (seconds < 10) {
-          seconds = "0" + seconds;
-        }
-        return hours + ":" + minutes + ":" + seconds;
-      };
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
+ -->
+<!-- <script src="./recorder/annyang/annyang.min.js"></script> -->
+<!-- <script src="./speechkitt.min.js"></script> -->
+<script>
 
-      var startRecordingButton = document.getElementById(
-        "startRecordingButton"
-      );
-      var stopRecordingButton = document.getElementById("stopRecordingButton");
-      var playButton = document.getElementById("playButton");
-      var downloadButton = document.getElementById("downloadButton");
 
-      var leftchannel = [];
-      var rightchannel = [];
-      var recorder = null;
-      var recordingLength = 0;
-      var volume = null;
-      var mediaStream = null;
-      var context = null;
-      var blob = null;
+function sleep(ms) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(resolve,ms);
+    })
+}
 
-      startRecordingButton.addEventListener("click", function() {
-        start = new Date().getTime();
-        // Initialize recorder
-        navigator.getUserMedia =navigator.getUserMedia ||navigator.webkitGetUserMedia ||navigator.mozGetUserMedia ||navigator.msGetUserMedia;
+function e1(){
+    console.log('第11111111个事件执行')
+}
+function e2(){
+    console.log('第22222个事件执行')
+}
+async function eventDelay(e,e1){
+    e();
+    console.log('等待一段时间再执行')
+    await sleep(4000)//等待毫秒数
+    e1();
+}
+eventDelay(e1,e2)
 
-        navigator.getUserMedia(
-          {
-            // audio: true
-            audio: {
-              sampleRate: 44100,
-              channelCount: 2 // canary 中此设置未生效，始终为 2
+function playSounds(url){
+    var board = document.getElementById("board");
+    var ad = document.createElement("audio");
+        ad.id = 'jsAudio';
+        ad.src = url;
+        ad.loop = false;
+        ad.play();
+}
+
+// var Surl = './annyang/answer/yhff.wav';//指定声音文件
+// playSounds(Surl);//播放声音文件
+
+ 
+
+if(annyang){
+// console.log("annyang works")
+// annyang.setLanguage('zh-TW')
+annyang.setLanguage('zh-CN')
+// annyang.setLanguage('zh-yue')
+// annyang.setLanguage(language)
+
+var commands = {
+  "小雨": function() {
+    console.log('呼叫小雨，回复调用声音文件')
+    // var Surl = './annyang/answer/yhff.wav';//指定声音文件
+    // playSounds(Surl);//播放声音文件
+    // alert("在呢主人!");
+  textReader('主人，有什么可以帮你吗？')
+
+}
+
+}
+var commands2 = {
+  "滚开": function(){
+  textReader('再见主人')
+}
+
+
+}
+
+// annyang.setLanguage('zh-yue')
+// var commands = {
+//   "小哥出嚟": function() {
+//   handle(audioTime);
+//   alert(" 小哥在此!");
+// }
+// }
+// var commands2 = {
+//   "出嚟": function(){
+//   alert("出嚟着！");
+// }
+
+annyang.addCommands(commands);
+annyang.addCommands(commands2);
+annyang.start();
+
+}else{
+  console.log("annyang works not properly")
+
+}
+
+// // ***************语音合成Speech Synthesis 的核心 API ：SpeechSynthesisUtterance 和 speechSynthesis****************************
+// SpeechSynthesisUtterance基本属性
+//     SpeechSynthesisUtterance.lang 获取并设置话语的语言
+//     SpeechSynthesisUtterance.pitch 获取并设置话语的音调(值越大越尖锐,越低越低沉)
+//     SpeechSynthesisUtterance.rate 获取并设置说话的速度(值越大语速越快,越小语速越慢)
+//     SpeechSynthesisUtterance.text 获取并设置说话时的文本
+//     SpeechSynthesisUtterance.voice 获取并设置说话的声音
+//     SpeechSynthesisUtterance.volume 获取并设置说话的音量
+// SpeechSynthesisUtterance.text基本方法
+//     speak() 将对应的实例添加到语音队列中
+//     cancel() 删除队列中所有的语音.如果正在播放,则直接停止
+//     pause() 暂停语音
+//     resume() 恢复暂停的语音
+//     getVoices 获取支持的语言数组. 注意:必须添加在voiceschanged事件中才能生效
+
+function textReader(txt){
+
+      const synth = window.speechSynthesis
+      const msg = new SpeechSynthesisUtterance()
+      let voices = []
+      const voicesDropdown = document.querySelector('[name="voice"]')
+      const options = document.querySelectorAll('[type="range"], [name="text"]')
+      const speakButton = document.querySelector('#speak')
+      const stopButton = document.querySelector('#stop')
+
+      msg.text = txt;
+      msg.lang = 'zh-CN'
+
+      synth.addEventListener('voiceschanged',getSupportVoices)
+      speakButton.addEventListener('click',throttle(handleSpeak,10))
+      stopButton.addEventListener('click',handleStop)
+      options.forEach(e => e.addEventListener('change',handleChange))
+
+      function getSupportVoices() {
+        voices = synth.getVoices()
+        voices.forEach(e => {
+            const option = document.createElement('option')
+            option.value = e.lang
+            option.text = e.name
+            voicesDropdown.appendChild(option)
+         })
+      }
+      function handleSpeak(e) {
+        msg.lang = voicesDropdown.selectedOptions[0].value
+        synth.speak(msg)
+        console.log(synth)
+      }
+      function handleStop(e) {
+        synth.cancel(msg)
+      }
+      function handleChange(e) {
+        msg[this.name] = this.value
+        console.log(this.name);
+      }
+      function throttle(fn,delay) {
+        let last = 0
+        return function() {
+            const now = new Date()
+            if(now - last > delay) {
+              fn.apply(this,arguments)
+              last = now
             }
-          },
-          function(e) {
-            console.log("user consent");
-
-            // creates the audio context
-            window.AudioContext =
-              window.AudioContext || window.webkitAudioContext;
-            context = new AudioContext({sampleRate: 44100});
-
-            // creates an audio node from the microphone incoming stream
-            mediaStream = context.createMediaStreamSource(e);
-
-            // https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createScriptProcessor
-            // bufferSize: the onaudioprocess event is called when the buffer is full
-            var bufferSize = 2048;
-            var numberOfInputChannels = 2;
-            var numberOfOutputChannels = 2;
-            if (context.createScriptProcessor) {
-              recorder = context.createScriptProcessor(
-                bufferSize,
-                numberOfInputChannels,
-                numberOfOutputChannels
-              );
-            } else {
-              recorder = context.createJavaScriptNode(
-                bufferSize,
-                numberOfInputChannels,
-                numberOfOutputChannels
-              );
-            }
-
-            recorder.onaudioprocess = function(e) {
-              leftchannel.push(
-                new Float32Array(e.inputBuffer.getChannelData(0))
-              );
-              rightchannel.push(
-                new Float32Array(e.inputBuffer.getChannelData(1))
-              );
-              recordingLength += bufferSize;
-            };
-
-            // we connect the recorder
-            mediaStream.connect(recorder);
-            recorder.connect(context.destination);
-          },
-          function(e) {
-            console.error(e);
-          }
-        );
-      });
-
-      stopRecordingButton.addEventListener("click", function() {
-          info.textContent = String((new Date().getTime()-start)/1000).toHHMMSS();
-        window.AudioContext = window.AudioContext || window.webkitAudioContext;
-
-        // stop recording
-        recorder.disconnect(context.destination);
-        mediaStream.disconnect(recorder);
-
-        // we flat the left and right channels down
-        // Float32Array[] => Float32Array
-        var leftBuffer = flattenArray(leftchannel, recordingLength);
-        var rightBuffer = flattenArray(rightchannel, recordingLength);
-        // we interleave both channels together
-        // [left[0],right[0],left[1],right[1],...]
-        var interleaved = interleave(leftBuffer, rightBuffer);
-
-        // we create our wav file
-        var buffer = new ArrayBuffer(44 + interleaved.length * 2);
-        var view = new DataView(buffer);
-
-        // RIFF chunk descriptor
-        writeUTFBytes(view, 0, "RIFF");
-        view.setUint32(4, 44 + interleaved.length * 2, true);
-        writeUTFBytes(view, 8, "WAVE");
-        // FMT sub-chunk
-        writeUTFBytes(view, 12, "fmt ");
-        view.setUint32(16, 16, true); // chunkSize
-        view.setUint16(20, 1, true); // wFormatTag
-        view.setUint16(22, 2, true); // wChannels: stereo (2 channels)
-        view.setUint32(24, 44100, true); // dwSamplesPerSec
-        view.setUint32(28, 44100 * 4, true); // dwAvgBytesPerSec
-        view.setUint16(32, 4, true); // wBlockAlign
-        view.setUint16(34, 16, true); // wBitsPerSample
-        // data sub-chunk
-        writeUTFBytes(view, 36, "data");
-        view.setUint32(40, interleaved.length * 2, true);
-
-        // write the PCM samples
-        var index = 44;
-        var volume = 1;
-        for (var i = 0; i < interleaved.length; i++) {
-          view.setInt16(index, interleaved[i] * (0x7fff * volume), true);
-          index += 2;
-        }
-
-        // our final blob
-        blob = new Blob([view], { type: "audio/wav" });
-      });
-
-      playButton.addEventListener("click", function() {
-        if (blob == null) {
-          return;
-        }
-
-        var url = window.URL.createObjectURL(blob);
-        var audio = new Audio(url);
-        audio.play();
-      });
-
-      downloadButton.addEventListener("click", function() {
-        if (blob == null) {
-          return;
-        }
-
-        var url = URL.createObjectURL(blob);
-
-        var a = document.createElement("a");
-        document.body.appendChild(a);
-        a.style = "display: none";
-        a.href = url;
-        a.download = "sample.wav";
-        a.click();
-        window.URL.revokeObjectURL(url);
-      });
-
-      function flattenArray(channelBuffer, recordingLength) {
-        var result = new Float32Array(recordingLength);
-        var offset = 0;
-        for (var i = 0; i < channelBuffer.length; i++) {
-          var buffer = channelBuffer[i];
-          result.set(buffer, offset);
-          offset += buffer.length;
-        }
-        return result;
-      }
-
-      function interleave(leftChannel, rightChannel) {
-        var length = leftChannel.length + rightChannel.length;
-        var result = new Float32Array(length);
-
-        var inputIndex = 0;
-
-        for (var index = 0; index < length; ) {
-          result[index++] = leftChannel[inputIndex];
-          result[index++] = rightChannel[inputIndex];
-          inputIndex++;
-        }
-        return result;
-      }
-
-      function writeUTFBytes(view, offset, string) {
-        for (var i = 0; i < string.length; i++) {
-          view.setUint8(offset + i, string.charCodeAt(i));
         }
       }
-    </script>
+    speakButton.click()
+}
+
+
+
+
+
+
+</script>
+    
+
+  
+
   </body>
 </html>

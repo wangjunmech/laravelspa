@@ -2,6 +2,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 import Custfuns from './function/customizedFunctions.js'
 Vue.use(Custfuns);
+
 import Clipboard from 'clipboard'
 import login from './components/login.vue'
 import dashboard from './components/dashboard.vue'
@@ -34,8 +35,12 @@ import readingrec from './components/study/readingrec.vue'
 import recorder from './components/study/recorder.vue'
 import recorder2 from './components/study/recorder2.vue'
 import vdeliver from './components/vdeliver.vue'
-// import comp3 from './../components/sub/comp3'
+import artyomjs from './components/study/artyomjs.vue'
+import email from './components/study/email'
+import filehandler from './components/study/filehandler'
 
+import annyang from "./function/annyang.min.js"
+// Vue.use(annyang);
 
 // 进度表插件：http://hilongjw.github.io/vue-progressbar/
 import VueProgressBar from 'vue-progressbar'
@@ -68,6 +73,8 @@ Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue').default
 );
+
+
 
 /* Laravel passport End*/
 
@@ -158,7 +165,9 @@ let routes = [
 {path:'/vrecorder',component:recorder},
 {path:'/vrecorder2',component:recorder2},
 {path:'/vdeliver',component:vdeliver},
-// {path:'/comp3',component:comp3},
+{path:'/artyomjs',component:artyomjs},
+{path:'/email',component:email},
+{path:'/filehandler',component:filehandler},
 
 //配置404找不到页面
 {path: "/404",name: "notFound",component: notFound},

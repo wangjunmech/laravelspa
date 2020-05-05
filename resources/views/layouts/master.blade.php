@@ -346,10 +346,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
               <li class="nav-item">
-                <a href="./recorder/index.html" class="nav-link">
+                <a href="./recorder/index.html" class="nav-link" target="_blank">
                   <i class="fa fa-rocket yellow"></i>
-                  <p>LocalRecorder</p>
+                  <p>Voice speech</p>
                 </a>          
+              </li>
+
+             <li class="nav-item">
+                <a href="./studypages/artyom.html" class="nav-link" target="_blank">
+                  <i class="fa fa-rocket yellow"></i>
+                  <p>artyom</p>
+                </a>          
+              </li>
+
+            <li class="nav-item">
+                <router-link to="/artyomjs" class="nav-link">
+                  <i class="fa fa-rocket yellow"></i>
+                  <p>Artyom.js</p>
+                </router-link>          
               </li>
 
             <li class="nav-item">
@@ -360,9 +374,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
 
             <li class="nav-item">
-                <router-link to="/comp3" class="nav-link">
+                <router-link to="/email" class="nav-link">
                   <i class="fa fa-rocket yellow"></i>
-                  <p>Comp3</p>
+                  <p>Email</p>
+                </router-link>          
+              </li>
+
+            <li class="nav-item">
+                <router-link to="/filehandler" class="nav-link">
+                  <i class="fa fa-rocket yellow"></i>
+                  <p>FileHandler</p>
                 </router-link>          
               </li>
 
@@ -558,5 +579,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <!-- AdminLTE App -->
 <!-- <script src="dist/js/adminlte.min.js"></script> -->
+
+
 </body>
 </html>

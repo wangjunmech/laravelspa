@@ -23,7 +23,7 @@
 laravel-vue-pagination </a>    
                         <a href="http://vegetable.zhuyuntao.cn/Recorder/start.html" class="list-group-item list-group-item-warning" target="_blank">录音插件：js-audio-recorder </a>    
                         <a href="https://clipboardjs.com/" class="list-group-item list-group-item-danger" target="_blank">剪贴板插件：clipboardjs </a>    
-                        <a href=" " class="list-group-item list-group-item-dark" target="_blank">XXXX </a>    
+                        <a href="https://github.com/TalAter/annyang" class="list-group-item list-group-item-dark" target="_blank">语音识别： annyang </a>    
                         <a href=" " class="list-group-item list-group-item-primary" target="_blank">XXXX </a>                        
                     </div>
                 </div>
