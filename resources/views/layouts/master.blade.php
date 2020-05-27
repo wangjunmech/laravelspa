@@ -299,6 +299,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Colors</p>
                 </router-link>          
               </li>
+              
+              <li class="nav-item ">
+                <router-link to="/clickcopy" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Click to Copy Color</p>
+                </router-link>          
+              </li>
             </ul>
           </li>
           
@@ -425,6 +432,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </router-link>
           
               </li>
+              <li class="nav-item ">
+                <router-link to="/memorandum" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Memorandum</p>
+                </router-link>
+          
+              </li>
+             </ul>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="fa fa-space-shuttle red"></i>
+              <p>
+                Tools          
+                <i class="fas fa-angle-left right"></i>                
+                <span class="badge badge-info right">6</span>
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./phpinfo.php" class="nav-link" target="_blank">
+                  <img src="/logos/php.jpg" alt="无图片显示" style="width: 30px;height: 30px">
+                  <p>phpinfo</p>
+                </a>          
+              </li>
+
              </ul>
               
         <li class="nav-item">

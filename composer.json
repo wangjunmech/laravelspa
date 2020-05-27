@@ -15,7 +15,8 @@
         "laravel/passport": "~7.0",
         "laravel/tinker": "^1.0",
         "maatwebsite/excel": "^3.1",
-        "paquettg/php-html-parser": "^2.2"
+        "paquettg/php-html-parser": "^2.2",
+        "zytzagoo/smtp-validate-email": "^1.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -41,8 +42,12 @@
         },
         "classmap": [
             "database/seeds",
-            "database/factories"
-        ]
+            "database/factories",
+            "App/Customized/Classes"
+        ],
+       "files": [
+          "app/Customized/Functions/helper.php"
+       ]
     },
     "autoload-dev": {
         "psr-4": {

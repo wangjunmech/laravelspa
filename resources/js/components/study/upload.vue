@@ -1,74 +1,70 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header"><h3>Upload files, you can select and drag drop</h3></div>
-                    <div class="card-body">
-                      <div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header"><h3>Upload files, you can select and drag drop</h3></div>
+            <div class="card-body">
+              <div>
+                </div>
+                  <div class="uploader" 
+                    @dragenter="onDragEnter"
+                    @dragleave="onDragLeave"
+                    @dragover.prevent
+                    @drop="onDrop"
+                    :class="{dragging : isDragging}"
+                    >
+                        <i class="fa fa-upload" aria-hidden="true"></i>           
+                        <p>Drag your images here</p>
 
-                        
+                      <div v-show="!imgLen">
+                        <div >
+                        <div class="uploadbtn">
+                          <label v-show="hasFile" for="file" class="button-bevel orangeColor">Select more files</label>
+                          <span v-show="hasFile" class="button-bevel greenColor" @click="uploadFun">Upload files</span>
+                        </div>
+                          <label v-show="!hasFile" for="file" class="button-bevel orangeColor">Select files</label>
+                          <input id='file' type="file" class="inputfile" @change="fileByBtnSelect" ref="inputer" multiple
+                           />
+                           <!-- accept="image/*" 设置文件域文件类型限制-->
+                           <!-- accept属性<input accept="audio/*,video/*,image/*" /> -->
+                        </div> 
+                      </div>    
+                      <div v-show="!imgLen" class="img-preview">
+                        <div class="imgwraper" v-for="(image,index) in images" :key="index">
+                          <span class="closesign" @click="delImg(index)">×</span>
+                          <img :src="image" alt="`Image Uploader ${index}`">
+                          <div class="details">
+                            <span class="name" v-text="files[index].name"></span>
+                            <span class="size" v-text="getFileSize(files[index].size)"></span>
+                          </div>
+                         
+                        </div> 
+                      </div> 
+                    </div> 
+                      <!-- Button trigger modal -->
+                      <button type="button" id="popinfo" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" v-show=0>
+                        模态框按钮
+                      </button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalCenterTitle">倒计时提示！</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                                <div class="modal-body">成功上传图片！<span id='dtime'>5</span>秒后自动刷新页面！</div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                        <div class="uploader" 
-                            @dragenter="onDragEnter"
-                            @dragleave="onDragLeave"
-                            @dragover.prevent
-                            @drop="onDrop"
-                            :class="{dragging : isDragging}"
-                            >
-                                <i class="fa fa-upload" aria-hidden="true"></i>           
-                                <p>Drag your images here</p>
-
-                              <div v-show="!imgLen">
-                                <div >
-                                <div class="uploadbtn">
-                                  <label v-show="hasFile" for="file" class="button-bevel orangeColor">Select more files</label>
-                                  <span v-show="hasFile" class="button-bevel greenColor" @click="uploadFun">Upload files</span>
-                                </div>
-                                  <label v-show="!hasFile" for="file" class="button-bevel orangeColor">Select files</label>
-                                  <input id='file' type="file" class="inputfile" @change="fileByBtnSelect" ref="inputer" multiple
-                                   />
-                                   <!-- accept="image/*" 设置文件域文件类型限制-->
-                                   <!-- accept属性<input accept="audio/*,video/*,image/*" /> -->
-                                </div> 
-                              </div>    
-                              <div v-show="!imgLen" class="img-preview">
-                                <div class="imgwraper" v-for="(image,index) in images" :key="index">
-                                  <span class="closesign" @click="delImg(index)">×</span>
-                                  <img :src="image" alt="`Image Uploader ${index}`">
-                                  <div class="details">
-                                    <span class="name" v-text="files[index].name"></span>
-                                    <span class="size" v-text="getFileSize(files[index].size)"></span>
-                                  </div>
-                                 
-                                </div> 
-                              </div> 
-                            </div> 
-
-
-                                              <!-- Button trigger modal -->
-                                <button type="button" id="popinfo" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" v-show=0>
-                                  模态框按钮
-                                </button>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                  <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalCenterTitle">倒计时提示！</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                      </div>
-                                          <div class="modal-body">成功上传图片！<span id='dtime'>5</span>秒后自动刷新页面！</div>
-    
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
                     </div>
                 </div>
             </div>

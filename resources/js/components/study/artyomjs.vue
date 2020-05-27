@@ -30,7 +30,8 @@
 </select>                      
 
 </div>
-<div id="listening" class="btn btn-primary" @click='listening'>listening</div>
+<div id="listening" class="btn btn-primary" @click='listening'>
+    listening2223</div>
 <hr>
 <div id="showspeak"></div>
                                                
@@ -45,7 +46,7 @@
     export default {
         data(){
             return {
-                language:null,
+                language:'',
                 Jarvis:null,
                 speechSupported:null,
                 recognizingSupported:null,
@@ -71,92 +72,22 @@
 
             },
             setLang(){
-                // var langselect = document.getElementById('langselect');
-                // this.language = langselect.value
-                // console.log(' set lang to ...........')
-                // this.Jarvis=null;
-                // this.Jarvis = new Artyom();
-                // this.Jarvis.initialize({
-                //     // lang: "zh-CN", // 
-                //     lang: this.language, // 
-                //     continuous: true, // Listen forever
-                //     soundex: true,// Use the soundex algorithm to increase accuracy
-                //     debug: true, // Show messages in the console
-                //     executionKeyword: "and do it now",
-                //     listen: true, // Start to listen commands !
-
-                //     // If providen, you can only trigger a command if you say its name
-                //     // e.g to trigger Good Morning, you need to say "Jarvis Good Morning"
-                //     // name: "Jarvis" 
-                // }).then(() => {
-                //     console.log("Artyom has been succesfully initialized");
-                // }).catch((err) => {
-                //     console.error("Artyom couldn't be initialized: ", err);
-                // });
-                // // console.log(Jarvis);
-                // // Jarvis.say("hi emily, how are you doing？!");
-                
-
-            },
-            listening(){
-                console.log('listening')
-                this.Jarvis.say("ready to go, what can I do for you?");
-                this.Jarvis.addCommands([
-                    {
-                        indexes: ['Hello','Hi','is someone there'],
-                        action: (i) => {
-                            this.Jarvis.say("Hello, it's me");
-                        }
-                    },
-                    {
-                        indexes: ['Repeat after me *'],
-                        smart:true,
-                        action: (i,wildcard) => {
-                            this.Jarvis.say("You've said : "+ wildcard);
-                        }
-                    },
-                    // The smart commands support regular expressions
-                    {
-                        indexes: [/Good Morning/i],
-                        smart:true,
-                        action: (i,wildcard) => {
-                            this.Jarvis.say("You've said : "+ wildcard);
-                        }
-                    },
-                    {
-                        indexes: ['shut down yourself'],
-                        action: (i,wildcard) => {
-                            this.Jarvis.fatality().then(() => {
-                                console.log("Artyom succesfully stopped");
-                            });
-                        }
-                    },
-                    ]);  
-                this.Jarvis.redirectRecognizedTextOutput(function(recognized,isFinal){
-                    if(isFinal){
-                        var showspeak = document.getElementById('showspeak');
-                        showspeak.innerText=recognized;
-                        showspeak.style.backgroundColor="#d40";
-                        console.log("Final recognized text: " + recognized);
-                    }else{
-                        console.log(recognized);
-                    }
-                });
-            },
-
-        },
-        mounted() {
-            console.log('Component mounted.')
-            this.browserSupport()
-            var Jarvis = new Artyom();
-            this.Jarvis = Jarvis;
+                this.Jarvis=null;
+                var langselect = document.getElementById('langselect');
+                var language = langselect.value
+                this.language = language
+                console.log(' set lang to ...........')
+                var Jarvis = new Artyom();
+                this.Jarvis = Jarvis;
                 this.Jarvis.initialize({
                     // lang: "zh-CN", // 
-                    lang: "en-US", // 
+                    // lang: "en-US", // 
+                    lang:this.language, // 
                     continuous: true, // Listen forever
-                    soundex: true,// Use the soundex algorithm to increase accuracy
+                    soundex: true,// Use the soundex algorithm to increase accuracy,You'll need an SSL certificate in your website (https connection) in order to use the continuous mode, otherwise you'll be prompted for the permission to access the microphone everytime the recognition ends.
                     debug: true, // Show messages in the console
                     executionKeyword: "and do it now",
+                    speed:1, // talk normally
                     listen: true, // Start to listen commands !
 
                     // If providen, you can only trigger a command if you say its name
@@ -168,13 +99,114 @@
                     console.error("Artyom couldn't be initialized: ", err);
                 });
                 // console.log(Jarvis);
-                // Jarvis.say("hi emily, how are you doing？!");
-                this.Jarvis.say("ready to in mounted period");
+                this.Jarvis.say("语言选择 into"+this.language);
+                
 
-console.log('8888')
-            
-  
-        }
+            },
+            showText(){                            
+                this.Jarvis.redirectRecognizedTextOutput(function(recognized,isFinal){
+                    if(isFinal){
+                        var showspeak = document.getElementById('showspeak');
+                        showspeak.innerText=recognized;
+                        showspeak.style.backgroundColor="#d40";
+                        console.log("Final recognized text: " + recognized);
+                    }else{
+                        console.log(recognized);
+                    }
+                });   
+            },
+            listening(){
+                console.log('listening in '+this.language)  
+                var k=this.language;
+                switch (k)
+                    {
+                        case "zh-CN":{
+                            console.log("Switch...>>>>>>>>>>>>>>>>>>to CN")
+                            this.Jarvis.say("小猫精灵已经准备好了, 能帮您做点儿什么呢?");
+                            this.Jarvis.addCommands([
+                                {
+                                    indexes: ['小猫精灵','小猫','小猫有空吗'],
+                                    action: (i) => {
+                                        this.Jarvis.say("在呢主人");
+                                    }
+                                },
+                                {
+                                    indexes: ['跟着我说 *'],
+                                    smart:true,
+                                    action: (i,wildcard) => {
+                                        this.Jarvis.say("您说 : "+ wildcard);
+                                    }
+                                },
+                                // The smart commands support regular expressions
+                                {
+                                    indexes: [/你好小猫/i],
+                                    smart:true,
+                                    action: (i,wildcard) => {
+                                        this.Jarvis.say("Y您说 : "+ wildcard);
+                                    }
+                                },
+                                {
+                                    indexes: ['走开'],
+                                    action: (i,wildcard) => {
+                                        this.Jarvis.fatality().then(() => {
+                                            this.Jarvis.say("好的，有事记得叫我哦！");
+                                            console.log("8888");
+                                        });
+                                    }
+                                },
+                                ]);
+                            this.showText();             
+                        };
+                        break;
+                        case "en-US":{
+                            console.log("Switch...>>>>>>>>>>>>>>>>>>to Us")  
+
+                            this.Jarvis.say("ready to go, what can I do for you?");
+                            this.Jarvis.addCommands([
+                                {
+                                    indexes: ['Hello','Hi','is someone there'],
+                                    action: (i) => {
+                                        this.Jarvis.say("Hello, it's me");
+                                    }
+                                },
+                                {
+                                    indexes: ['Repeat after me *'],
+                                    smart:true,
+                                    action: (i,wildcard) => {
+                                        this.Jarvis.say("You've said : "+ wildcard);
+                                    }
+                                },
+                                // The smart commands support regular expressions
+                                {
+                                    indexes: [/Good Morning/i],
+                                    smart:true,
+                                    action: (i,wildcard) => {
+                                        this.Jarvis.say("You've said : "+ wildcard);
+                                    }
+                                },
+                                {
+                                    indexes: ['shut down yourself'],
+                                    action: (i,wildcard) => {
+                                        this.Jarvis.fatality().then(() => {
+                                            console.log("Artyom succesfully stopped");
+                                        });
+                                    }
+                                },
+                                ]);
+                            this.showText();  
+         
+                            
+                        };
+                        break;
+                        default:null;
+                    } 
+            },
+
+        },
+        mounted() {
+            console.log('Component mounted.');
+            this.browserSupport();
+            }
     }
 </script>
 <style scoped="scoped">

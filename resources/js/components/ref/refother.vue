@@ -3,6 +3,9 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
+
+
+
                     <div class="card-header">
                         <button class="btn btn-success m-1">mounted下使用this.$nextTick()在页面加载好后调用方法设置色块颜色</button>
                         <button class="btn btn-success m-1">使用JS原生document.execCommand('copy')方法将色号复制到剪贴板(单击需要选择文本，双击自动选择不到井号)</button>
@@ -10,6 +13,7 @@
 
                     </div>
                     <div class="card-body">
+
                         <div 
                         class="cblock" 
                         v-for="c in colorArr" 
@@ -31,7 +35,6 @@
                 colorArr:[],
             }
         },
-
         methods: {
             computeColor(){
                 for(var i=0;i<this.ctxt.length;i++){
@@ -71,7 +74,7 @@
 
             },
             copyColor(){
-                // js.execCommand("Copy") ;
+                js.execCommand("Copy") ;
 
 
                 // console.log(this.innerText)
@@ -80,6 +83,7 @@
         },
         mounted() {
             // console.log('Component mounted.')
+
             this.computeColor();
             this.$nextTick(()=>{
                 this.setColor();

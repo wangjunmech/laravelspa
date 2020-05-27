@@ -13,6 +13,7 @@ import notFound from './components/notFound.vue'
 import php from './components/study/dps-php.vue'
 import js from './components/study/dps-js.vue'
 import other from './components/study/dps-other.vue'
+import memorandum from './components/study/memorandum.vue'
 import studynote from './components/study/studynote.vue'
 import autofocus from './components/study/autofocus.vue'
 import ref from './components/study/ref.vue'
@@ -28,6 +29,8 @@ import inputacc from './components/ref/html/inputacc.vue'
 import btnstyle from './components/ref/html/buttonStyle.vue'
 import refcss from './components/ref/refcss.vue'
 import divpos from './components/ref/css/divpos.vue'
+import clickcopy from './components/ref/clickcopy'
+
 import addlink from './components/study/addlink.vue'
 import moldlist from './components/works/moldlist/moldlist.vue'
 import readingkeeper from './components/study/readingkeeper.vue'
@@ -144,6 +147,7 @@ let routes = [
 {path:'/jspack',component:js},
 {path:'/phppack',component:php},
 {path:'/otherpack',component:other},
+{path:'/memorandum',component:memorandum},
 {path:'/studynote',component:studynote},
 {path:'/autofocus',component:autofocus},
 {path:'/ref',component:ref},
@@ -168,10 +172,11 @@ let routes = [
 {path:'/artyomjs',component:artyomjs},
 {path:'/email',component:email},
 {path:'/filehandler',component:filehandler},
+{path:'/clickcopy',component:clickcopy},
 
 //配置404找不到页面
-{path: "/404",name: "notFound",component: notFound},
-{path: "*",redirect: "/404"},
+// {path: "/404",name: "notFound",component: notFound},
+// {path: "*",redirect: "/404"},
 
 ]
 
@@ -233,7 +238,7 @@ const app = new Vue({
       //   eventHandler.$emit('searching');
       // },
       searchFunIns:_.debounce(()=>{
-        console.log('#搜索开始..............');
+        console.log('#输入监听1秒开始自动搜索..............');
         eventHandler.$emit('searching');
         },1000),
       globalPrint(){

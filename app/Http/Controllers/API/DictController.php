@@ -218,7 +218,7 @@ class DictController extends Controller
         //***********用模型的where条件查询数据******OK
         // $articles = article::where('user_id','=',$userid)->paginate(10);//根据条件分页OK
         // $articles = article::where('user_id','=',$userid)->select("articletitle",'created_at')->paginate(10);//根据条件分页OK,仅选择想要的列
-        $articles = article::where('user_id','=',$userid)->latest()->paginate(2);//根据条件分页OK,latest方法倒序选择，
+        $articles = article::where('user_id','=',$userid)->latest()->paginate(5);//根据条件分页OK,latest方法倒序选择，
         return $articles;
 
     }

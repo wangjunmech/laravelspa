@@ -96,11 +96,11 @@
                 .then(({ data }) => { 
                     console.log(data)
                     alert('保存阅读完成！')
-                     this.$router.go(0)
+                     // this.$router.go(0)
                      })
                 .catch(function(error){
                     alert('保存阅读错误！')
-                     this.$router.go(0)
+                     // this.$router.go(0)
                     if(error.response){
                         console.log(error.response.data);
                         console.log(error.response.status);
