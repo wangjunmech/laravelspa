@@ -309,7 +309,37 @@
               // 打印元素的ID为printMe
               // 设置打印范围，打印内容为 <!-- SOURCE --><!-- OUTPUT -->标记之间的内容
               this.$htmlToPaper('printMe');
-            }
+            },
+            highlightserch(kwords){
+              console.log('highlightserch............'+kwords)
+              var content = document.getElementById('printMe');
+              // content.style.background='red';//设置背景颜色
+              var contentTxt = content.innerHTML;
+              // if (kwords.length > 0) {
+              //   // 匹配关键字正则
+              var str = 'this is a test all right an sentence';
+              var regKey = "<td>"+kwords+"</td>"
+                let replaceReg = new RegExp(kwords, 'g');
+              //   // 高亮替换v-html值
+                let replaceString = '<span style="background:red;">' + kwords + '</span>';
+              //   // 开始替换
+                var newcontentTxt = contentTxt.replace(replaceReg, replaceString);
+              // }
+              // // return contentTxt;
+              // contentTxt='xxx';
+              // console.log(contentTxt)
+              content.innerHTML=newcontentTxt;
+            },
+            highlights (kwords,data) {
+              console.log('*******highlights**********')
+                var result=null;
+                var tdNodes = document.getElementsByTagName('td');
+                console.log(tdNodes.length);
+                for(var i=0;i<tdNodes.length;i++){
+                  console.log(tdNodes[i].innerText+'****');
+                }
+                
+            },
  
         } ,
         created() {
@@ -329,11 +359,15 @@
             eventHandler.$on('searching',()=>{
                 // console.log('搜索用户表'+kwords);
               let kwords=this.$parent.searchStr;
+
                 axios.get('api/finduser?k='+kwords)
                 .then((response)=>{
                   console.log('搜索用户后返回****************')
+
                   // console.log(response.data);
-                  this.users=response.data;                  
+                  this.users=response.data; 
+                  this.highlights(kwords,response.data);
+                 
                 })
                 .then(()=>{
                   // console.log((JSON.stringify(this.users.data) ));
@@ -358,6 +392,8 @@
     }
 </script>
 <style scoped="scoped">
-
+.search-text{
+  background-color: red;
+}
 
 </style>

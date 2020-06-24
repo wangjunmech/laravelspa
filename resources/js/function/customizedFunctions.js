@@ -1,8 +1,59 @@
+//在app.js中引入此文件
+// import Custfuns from './function/customizedFunctions.js'
+// Vue.use(Custfuns);
 exports.install = function (Vue, options) {
-   Vue.prototype.testCustFun = function (info){
+    Vue.prototype.testCustFun = function (info){
        console.log('testCustFun..........'+info)
     };
 
+    var screenFlag=false;//是否全屏标记
+    Vue.prototype.fscreen = function (e){
+        console.log(e)
+        //全屏与退出全屏
+        var docElm = document.documentElement;
+        if(screenFlag==false){
+                //W3C
+                if(docElm.requestFullscreen) {
+                  docElm.requestFullscreen();
+                }
+             
+                //FireFox
+                else if(docElm.mozRequestFullScreen) {
+                  docElm.mozRequestFullScreen();
+                }
+             
+                //Chrome等
+                else if(docElm.webkitRequestFullScreen) {
+                  docElm.webkitRequestFullScreen();
+                }
+             
+                //IE11
+                else if(elem.msRequestFullscreen) {
+                  elem.msRequestFullscreen();
+                }
+                screenFlag=!screenFlag;
+                e.target.title="CancelFullScreen"
+            }else{
+                    //W3C
+                    if (document.exitFullscreen) {
+                      document.exitFullscreen();
+                    }
+                    //FireFox
+                    else if (document.mozCancelFullScreen) {
+                      document.mozCancelFullScreen();
+                    }
+                    //Chrome等
+                    else if (document.webkitCancelFullScreen) {
+                      document.webkitCancelFullScreen();
+                    }
+                    //IE11
+                    else if (document.msExitFullscreen) {
+                      document.msExitFullscreen();
+                    }
+                screenFlag=!screenFlag;
+                e.target.title="FullScreen"
+            }
+    };
 
    Vue.prototype.textAreaAutoHeight = function (elem, extra, maxHeight) {
 /**

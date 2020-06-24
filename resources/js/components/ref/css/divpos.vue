@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Div对齐方式</div>
+                    <div class="card-header">Div对齐方式(\resources\js\components\ref\css\divpos.vue)</div>
                     <div class="card-body">
                         <div class="box">                            
                             <div style="display: inline-block;float: left; width:200px;height:200px; border:2px solid #f00;display:flex;justify-content:center;align-items:center;">

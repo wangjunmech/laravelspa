@@ -10,6 +10,12 @@
                         </router-link>          
                         <router-link to="/divpos" class="items">
                           Div对齐
+                        </router-link>           
+                        <router-link to="/divbreak" class="items">
+                          Div换行
+                        </router-link>           
+                        <router-link to="/colorname" class="items">
+                          网页颜色名称
                         </router-link>          
                             
 

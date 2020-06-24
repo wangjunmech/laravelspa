@@ -20,6 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResources([
     'user' => 'API\UserController',
 ]);
+// Route::get('user','API\UserController@index');
+
+
 Route::get('profile','API\UserController@profile');
 Route::patch('profile','API\UserController@profileUpdate');
 Route::get('finduser','API\UserController@searchuser');//搜索用户
@@ -43,3 +46,6 @@ Route::apiResources([
     'tools' => 'API\ToolsController',
 ]);
 Route::get('mv','API\MailVerifyController@index');//验证邮箱是否真实存在
+
+Route::get('catetree', 'API\CategoryController@index');
+Route::post('catetree', 'API\CategoryController@index');

@@ -11,30 +11,33 @@
     },
     "devDependencies": {
         "axios": "^0.19.2",
-        "bootstrap": "^4.1.0",
+        "bootstrap": "^4.5.0",
         "cross-env": "^5.1",
-        "jquery": "^3.2",
+        "jquery": "^3.5.1",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.13",
         "popper.js": "^1.12",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.15.2",
+        "sass": "^1.26.8",
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.12.1",
-        "admin-lte": "^3.0.2",
+        "@fortawesome/fontawesome-free": "^5.13.0",
+        "@riophae/vue-treeselect": "^0.4.0",
+        "admin-lte": "^3.0.5",
         "artyom.js": "^1.0.6",
         "clipboard": "^2.0.6",
         "js-audio-recorder": "^1.0.6",
         "laravel-vue-pagination": "^2.3.1",
-        "sweetalert2": "^9.10.4",
+        "sweetalert2": "^9.14.0",
         "vform": "^1.0.1",
         "vue-auto-focus": "^1.0.0",
         "vue-html-to-paper": "^1.3.1",
         "vue-progressbar": "^0.7.5",
-        "vue-router": "^3.1.6"
+        "vue-router": "^3.3.2",
+        "vue-tree-halower": "^1.8.3",
+        "vue-tree-list": "^1.4.5"
     }
 }

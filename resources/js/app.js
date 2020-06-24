@@ -1,12 +1,24 @@
 require('./bootstrap');
+import './cursorStyles/heart.js';
+import './function/customizedAlert.js';
+
 window.Vue = require('vue');
+
 import Custfuns from './function/customizedFunctions.js'
 Vue.use(Custfuns);
+
 
 import Clipboard from 'clipboard'
 import login from './components/login.vue'
 import dashboard from './components/dashboard.vue'
-import profile from './components/profile.vue'
+// works
+import moldlist from './components/works/moldlist/moldlist.vue'
+import cate from './components/category/cate.vue'
+import dcate from './components/category/dcate.vue'
+import catetree from './components/category/catetree.vue'
+import treelist from './components/category/treelist.vue'
+
+import slotcomp from './components/study/slotcomp.vue'
 import users from './components/users.vue'
 import pdemo from './components/pdemo.vue'
 import notFound from './components/notFound.vue'
@@ -17,6 +29,13 @@ import memorandum from './components/study/memorandum.vue'
 import studynote from './components/study/studynote.vue'
 import autofocus from './components/study/autofocus.vue'
 import ref from './components/study/ref.vue'
+import drag from './components/study/drag.vue'
+import drag2 from './components/study/drag2.vue'
+import drag3 from './components/study/drag3.vue'
+import drag4 from './components/study/drag4.vue'
+import drag5 from './components/study/drag5.vue'
+import resize from './components/study/resize.vue'
+
 import loadingStyle from './components/study/loadingStyle.vue'
 import uploadfiles from './components/study/upload.vue'
 import loadimgs from './components/study/loadimgs.vue'
@@ -24,15 +43,20 @@ import reference from './route/reference.vue'
 import refhtml from './components/ref/refhtml.vue'
 import refjs from './components/ref/refjs.vue'
 import refphp from './components/ref/refphp.vue'
+import regexp from './components/ref/regexp.vue'
 import refother from './components/ref/refother.vue'
 import inputacc from './components/ref/html/inputacc.vue'
 import btnstyle from './components/ref/html/buttonStyle.vue'
 import refcss from './components/ref/refcss.vue'
+import refmysql from './components/ref/refmysql.vue'
+    import schema from './components/study/articles/mysqlschema.vue'
+    import issue from './components/study/articles/mysqlissue.vue'
 import divpos from './components/ref/css/divpos.vue'
+import divbreak from './components/ref/css/divbreak.vue'
+import colorname from './components/ref/css/colorname.vue'
 import clickcopy from './components/ref/clickcopy'
 
 import addlink from './components/study/addlink.vue'
-import moldlist from './components/works/moldlist/moldlist.vue'
 import readingkeeper from './components/study/readingkeeper.vue'
 import readingrec from './components/study/readingrec.vue'
 import recorder from './components/study/recorder.vue'
@@ -41,6 +65,19 @@ import vdeliver from './components/vdeliver.vue'
 import artyomjs from './components/study/artyomjs.vue'
 import email from './components/study/email'
 import filehandler from './components/study/filehandler'
+
+import profile from './components/profile.vue'
+
+///***********测试路由分组***********
+// import message1 from './components/message/msg1'
+
+// import message2 from './components/message/msg2';
+
+// import sssssss from './js/route/reference'
+// import message from  './message'
+
+///***********测试路由分组***********
+
 
 import annyang from "./function/annyang.min.js"
 // Vue.use(annyang);
@@ -60,6 +97,8 @@ const Toast = swalt.mixin({
     toast.addEventListener('mouseleave', swalt.resumeTimer)
   }
 })
+
+
 
 /* Laravel passport template*/
 Vue.component(
@@ -116,6 +155,14 @@ Vue.use(VueProgressBar, {
 import AutoFocus from 'vue-auto-focus'
 Vue.use(AutoFocus)
 
+// 无限级分类选择插件
+import { VTree, VSelectTree } from 'vue-tree-halower'
+Vue.use (VTree)
+Vue.use (VSelectTree)
+
+import VueTreeList from 'vue-tree-list'
+Vue.use(VueTreeList)
+
 
 // 打印页面插件
 import VueHtmlToPaper from 'vue-html-to-paper';
@@ -141,8 +188,15 @@ let routes = [
 {path:'/login',component:login},
 {path:'/home',component:dashboard},
 {path:'/dashboard',component:dashboard},
+{path:'/moldlist',component:moldlist},
+{path:'/cate',component:cate},
+{path:'/dcate',component:dcate},
+{path:'/catetree',component:catetree},
+{path:'/treelist',component:treelist},
+
 {path:'/profile',component:profile},
 {path:'/users',component:users},
+{path:'/slot',component:slotcomp},
 {path:'/passportdemo',component:pdemo},
 {path:'/jspack',component:js},
 {path:'/phppack',component:php},
@@ -151,19 +205,42 @@ let routes = [
 {path:'/studynote',component:studynote},
 {path:'/autofocus',component:autofocus},
 {path:'/ref',component:ref},
+{path:'/drag',component:drag},
+{path:'/drag2',component:drag2},
+{path:'/drag3',component:drag3},
+{path:'/drag4',component:drag4},
+{path:'/drag5',component:drag5},
+{path:'/resize',component:resize},
+
+
 {path:'/loadingStyle',component:loadingStyle},
 {path:'/uploadfiles',component:uploadfiles},
 {path:'/loadimgs',component:loadimgs},
 {path:'/refhtml',component:refhtml},
 {path:'/refjs',component:refjs},
 {path:'/refphp',component:refphp},
+{path:'/regexp',component:regexp},
 {path:'/refother',component:refother},
 {path:'/input/accept',component:inputacc},
 {path:'/btnstyle',component:btnstyle},
 {path:'/refcss',component:refcss},
+{path:'/refmysql',
+  component:refmysql,
+  children:[
+        {
+            path:'schema',
+            component:schema
+        },
+        {
+            path:'issue',
+            component:issue
+        }
+    ],
+},
 {path:'/divpos',component:divpos},
+{path:'/divbreak',component:divbreak},
+{path:'/colorname',component:colorname},
 {path:'/addlink',component:addlink},
-{path:'/moldlist',component:moldlist},
 {path:'/rdkp',component:readingkeeper},
 {path:'/readingrec',component:readingrec},
 {path:'/vrecorder',component:recorder},
@@ -174,15 +251,17 @@ let routes = [
 {path:'/filehandler',component:filehandler},
 {path:'/clickcopy',component:clickcopy},
 
+//拆分到message.js中的路由
+
 //配置404找不到页面
 // {path: "/404",name: "notFound",component: notFound},
 // {path: "*",redirect: "/404"},
-
 ]
 
 const router = new VueRouter({
 	mode:'history',//去除地址栏显示井号问题
 	routes,
+
 })
 
 /*大写文本*/
@@ -193,7 +272,6 @@ Vue.filter('ucText',function(val){
 Vue.filter('ucFirst',function(val){
 	return val.charAt(0).toUpperCase()+val.slice(1);
 })
-
 
 //全局事件监听
 let eventHandler = new Vue()
@@ -217,6 +295,13 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // 3. 登录页设置login.vue
 
 
+//自定义指定，用v-red来给标签内容添加样式
+Vue.directive('textRed',{
+    inserted:function(el){
+        // el.style.background = 'red';
+        el.style.color = 'red';
+    }
+});
 // ********************************
 
 const app = new Vue({

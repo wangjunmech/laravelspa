@@ -24,7 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars" title="SideMenu Show"></i></a>
       </li>
 
     </ul>
@@ -81,7 +81,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-          <i class="fas fa-th-large"></i>
+          <i class="fa fa-window-restore" @click="fscreen($event)" title="FullScreen"></i>
         </a>
       </li>
     </ul>
@@ -170,8 +170,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <span>
                   <i class="fa fa-th-large"></i>
                   MoldList</span>
-                </router-link>
-          
+                </router-link>          
+              </li>
+              <li class="nav-item">
+                <router-link to="/cate" class="nav-link ">
+                  <span>
+                  <i class="fa fa-th-large"></i>
+                  Category</span>
+                </router-link>          
+              </li>
+              <li class="nav-item">
+                <router-link to="/catetree" class="nav-link ">
+                  <span>
+                  <i class="fa fa-th-large"></i>
+                  CategoryDrag</span>
+                </router-link>          
+              </li>
+              <li class="nav-item">
+                <router-link to="/dcate" class="nav-link ">
+                  <span>
+                  <i class="fa fa-th-large"></i>
+                  Dynamic Category</span>
+                </router-link>          
+              </li>
+              <li class="nav-item">
+                <router-link to="/treelist" class="nav-link ">
+                  <span>
+                  <i class="fa fa-th-large"></i>
+                  Treelist</span>
+                </router-link>          
               </li>
  
 
@@ -188,12 +215,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <ul class="nav nav-treeview">
+             
+              <li class="nav-item">
+                <router-link to="/slot" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Slot & Component</p>
+                </router-link>          
+              </li>
+
+              <li class="nav-item">
+                <router-link to="/ref" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ref</p>
+                </router-link>          
+              </li>
+
               <li class="nav-item">
                 <a href="/studypages/guessNum.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>guessNum.php</p>
                 </a>          
-              </li>
+              </li>    
 
               <li class="nav-item">
                 <a href="/Audio.php" class="nav-link">
@@ -207,14 +249,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <i class="far fa-circle nav-icon"></i>
                   <p>Autofocus Example</p>
                 </router-link>          
-              </li>
-              
-              <li class="nav-item">
-                <router-link to="/ref" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ref</p>
-                </router-link>          
-              </li>
+              </li>              
               
               <li class="nav-item">
                 <router-link to="/loadingStyle" class="nav-link">
@@ -248,6 +283,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <a href="./studypages/drag.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>dragResize</p>
+                </a>          
+              </li>    
+
+              <li class="nav-item">
+                <a href="/drag" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Drag</p>
+                </a>          
+              </li>
+
+              <li class="nav-item">
+                <a href="/drag2" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Drag2</p>
+                </a>          
+              </li>
+
+              <li class="nav-item">
+                <a href="/drag3" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Drag3</p>
+                </a>          
+              </li>
+
+              <li class="nav-item">
+                <a href="/drag4" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Drag4</p>
+                </a>          
+              </li>
+              <li class="nav-item">
+                <a href="/drag5" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Drag5</p>
+                </a>          
+              </li>
+
+              <li class="nav-item">
+                <a href="/resize" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Resize</p>
                 </a>          
               </li>
 
@@ -291,19 +367,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <i class="far fa-circle nav-icon"></i>
                   <p>PHP</p>
                 </router-link>          
+              </li>  
+              
+              <li class="nav-item ">
+                <router-link to="/regexp" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>RegExp正则</p>
+                </router-link>          
+              </li>              
+              <li class="nav-item ">
+                <router-link to="/refmysql" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Mysql</p>
+                </router-link>          
               </li>
               
               <li class="nav-item ">
                 <router-link to="/refother" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Colors</p>
-                </router-link>          
-              </li>
-              
-              <li class="nav-item ">
-                <router-link to="/clickcopy" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Click to Copy Color</p>
+                  <p>VPS,VPN site</p>
                 </router-link>          
               </li>
             </ul>
@@ -456,6 +538,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <img src="/logos/php.jpg" alt="无图片显示" style="width: 30px;height: 30px">
                   <p>phpinfo</p>
                 </a>          
+              </li>
+              
+              <li class="nav-item ">
+                <router-link to="/clickcopy" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Click to Copy Color</p>
+                </router-link>          
               </li>
 
              </ul>
