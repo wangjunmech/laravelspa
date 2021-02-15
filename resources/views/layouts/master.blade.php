@@ -14,8 +14,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/css/app.css">
+  <!-- 总的CSS文件路径 -->
 
 </head>
+<style>
+      @page {
+      /*用样式去除边距全打印不出页眉页脚*/
+      /* 纵向 */
+      /*size: portrait; */
+ 
+      /* 横向 */
+      size: landscape; 
+      /* 边距 上右下左 */
+      /*margin: 1cm 2cm 1cm 2cm;*//*//设置边距会打印出浏览器默认页眉页脚*/
+      margin: 0;/*去除浏览器默认页眉页脚*/
+    }
+</style>
 <body class="hold-transition sidebar-mini ">
 <div class="wrapper" id="app" @click="sessionListener()" @mousemove="sessionListener()">
 
@@ -200,6 +214,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   Treelist</span>
                 </router-link>          
               </li>
+              <li class="nav-item">
+                <router-link to="/scheduler" class="nav-link ">
+                  <span>
+                  <i class="fa fa-th-large"></i>
+                  scheduler</span>
+                </router-link>          
+              </li>
  
 
             </ul>
@@ -343,6 +364,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item ">
+                <router-link to="/keycode" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Keycode</p>
+                </router-link>          
+              </li>
+              <li class="nav-item ">
+                <router-link to="/Webcolor" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Webcolor</p>
+                </router-link>          
+              </li>
+              <li class="nav-item ">
                 <router-link to="/refhtml" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Html</p>
@@ -385,7 +418,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item ">
                 <router-link to="/refother" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>VPS,VPN site</p>
+                  <p>参考网站</p>
+                </router-link>          
+              </li>
+              
+              <li class="nav-item ">
+                <router-link to="/refpte" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Periodic Table</p>
                 </router-link>          
               </li>
             </ul>
@@ -505,6 +545,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </router-link>
           
               </li>
+
           
               </li>
               <li class="nav-item ">
@@ -546,18 +587,85 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Click to Copy Color</p>
                 </router-link>          
               </li>
+              
+              <li class="nav-item ">
+                <router-link to="/toollinks" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ToolLinks</p>
+                </router-link>          
+              </li>
 
              </ul>
+           </li>
+              
+    
+              
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="fa fa-space-shuttle red"></i>
+              <p>Knowledge         
+                <i class="fas fa-angle-left right"></i>                
+                <span class="badge badge-info right">6</span>
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">               
+              <li class="nav-item ">
+                <router-link to="/clickcopy" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Transportation&Logistic</p>
+                </router-link>          
+              </li>
+        
+              </li>
+
+             </ul>
+           </li>
+              
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="fa fa-space-shuttle red"></i>
+              <p>
+                Trading          
+                <i class="fas fa-angle-left right"></i>                
+                <span class="badge badge-info right">6</span>
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link to="/transcompany" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Transportation company</p>
+                </router-link>           
+              </li>
+              
+              <li class="nav-item ">
+                <router-link to="/containertype" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Containers type</p>
+                </router-link>          
+              </li>
+              
+              <li class="nav-item ">
+                <router-link to="/containercapability" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Container capability</p>
+                </router-link>          
+              </li>
+
+
+             </ul>
+           </li>
               
         <li class="nav-item">
                 <router-link to="/profile" class="nav-link">
                   <i class="fa fa-user fa-fw yellow"></i>
                   <p>Profile          
                 <i class="fas fa-angle-left right"></i>                
-                <span class="badge badge-info right">6</span>
               </p>
                 </router-link>          
-              </li>
+        </li>
         <li class="nav-item">
         <a href="/logout" onclick="event.preventDefault();
                document.getElementById('logout-form').submit();" class="nav-link btn btn-danger"><i class="nav-icon fas fa-power-off"></i> <p>
@@ -615,6 +723,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </footer>
 </div>
       <script type="text/javascript">
+
+        
         function getYear(){
             var time = new Date(); //当前时间戳 
             var year = time.getFullYear();//当前年份 

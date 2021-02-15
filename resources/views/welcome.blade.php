@@ -68,7 +68,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">单入口应用路由</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -81,17 +81,17 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Laravel学习项目
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="/catetreetest">routes/web.php中的普通路由</a>
+                    <a href= "/WebSpider">WebSpider</a>
+                    <a href= "">News</a>
+                    <a href= "">Blog</a>
+                    <a href= "">Nova</a>
+                    <a href= "">Forge</a>
+                    <a href= "">GitHub</a>
                 </div>
             </div>
         </div>

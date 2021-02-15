@@ -19,6 +19,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/catetreetest', 'CategoryController@index')->name('cate');//此路由如果放到单路由入口后面会被拦截
+Route::get('/WebSpider', 'WebSpiderController@index')->name('spider');//此路由如果放到单路由入口后面会被拦截
+Route::get('/checkfile', 'WebSpiderController@fileexistchk')->name('fcheck');//判断文件是否存在
 Route::post('/catetreetest', 'CategoryController@index')->name('cate');//此路由如果放到单路由入口后面会被拦截
 
 

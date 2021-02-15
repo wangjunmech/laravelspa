@@ -3,16 +3,20 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">COLOR SELECTOR [Click on color blocks to copy color]</div>
+                    <div class="card-header">COLOR SELECTOR [Click on color blocks to copy color] <span><a href="http://tools.jb51.net/static/colorpicker/">颜色在线转换</a></span></div>
                     <div class="card-body">
- 
+
+
+<!-- *********************自动生成颜色区**********************  -->
 <div class="shape cover" v-for="color in colorArr"> 
     <textarea :id="color" class="shape txtarea">{{color}}</textarea>
     <div class="shape screen">{{color}}</div> 
     <input type="button" @click="copyColor($event)" :value="color" class="shape btn"/>  
 
 </div> 
-                        
+<!-- ***************************************************************-->
+
+<!-- ************************** -->
                     </div>
                 </div>
             </div>

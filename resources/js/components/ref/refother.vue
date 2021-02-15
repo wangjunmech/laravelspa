@@ -4,13 +4,23 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>VPS,VPN,VPC参考网站</h3>
+                        <h3>参考网站</h3>
        
                     </div>
                     <div class="card-body">
                         <a href="https://www.digitalocean.com/" class="items">digitalocean</a>
                         <a href="https://www.henghost.com" class="items">恒创云</a>
-       
+
+                        <hr>
+                        <a href="https://savefrom4k.net/" class="items">YouTube Video Downloader</a>
+                        
+                        <a href="https://loader.to//" class="items">YouTube Playlist Downloader</a>
+                        <hr>
+                        <a href="https://blog.mailtrap.io" class="items">mailtrap</a>
+                        <a href="http://tool.chacuo.net/mailverify" class="items">检测邮箱地址真实性tool.chacuo.net</a>
+                        <a href="https://www.sohokey.cn/email/verify/" class="items">检测邮箱真实性sohokey.cn</a>
+                        <hr>
+                        <a href="https://www.engineersedge.com/international_tol.htm" class="items">engineer公差国际标准</a>       
 
                         
                     </div>

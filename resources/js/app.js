@@ -1,5 +1,6 @@
 require('./bootstrap');
 import './cursorStyles/heart.js';
+/*自定义alert警告框，文件路径\resources\js\function\customizedAlert.js*/
 import './function/customizedAlert.js';
 
 window.Vue = require('vue');
@@ -17,6 +18,7 @@ import cate from './components/category/cate.vue'
 import dcate from './components/category/dcate.vue'
 import catetree from './components/category/catetree.vue'
 import treelist from './components/category/treelist.vue'
+import scheduler from './components/study/scheduler.vue'
 
 import slotcomp from './components/study/slotcomp.vue'
 import users from './components/users.vue'
@@ -40,20 +42,48 @@ import loadingStyle from './components/study/loadingStyle.vue'
 import uploadfiles from './components/study/upload.vue'
 import loadimgs from './components/study/loadimgs.vue'
 import reference from './route/reference.vue'
+import keycode from './components/ref/keycode.vue'
 import refhtml from './components/ref/refhtml.vue'
+import webcolor from './components/ref/webcolor.vue'
 import refjs from './components/ref/refjs.vue'
 import refphp from './components/ref/refphp.vue'
 import regexp from './components/ref/regexp.vue'
 import refother from './components/ref/refother.vue'
+import refpte from './components/ref/refpte.vue'
 import inputacc from './components/ref/html/inputacc.vue'
 import btnstyle from './components/ref/html/buttonStyle.vue'
 import refcss from './components/ref/refcss.vue'
 import refmysql from './components/ref/refmysql.vue'
     import schema from './components/study/articles/mysqlschema.vue'
     import issue from './components/study/articles/mysqlissue.vue'
+    import sql from './components/study/articles/sql.vue'
+    import tablesAndKeys from './components/study/articles/tablesAndKeys.vue'
+    import sqlBasic from './components/study/articles/sqlBasic.vue'
+    import installtowin from './components/study/articles/installtowin.vue'
+    import installtomac from './components/study/articles/installtomac.vue'
+    import createtable from './components/study/articles/createtable.vue'
+    import insertdata from './components/study/articles/insertdata.vue'
+    import constraints from './components/study/articles/constraints.vue'
+    import updatedel from './components/study/articles/updatedel.vue'
+    import query from './components/study/articles/query.vue'
+    import companydatabase from './components/study/articles/companydatabase.vue'
+    import createcompanydatabase from './components/study/articles/createcompanydatabase.vue'
+    import morequeries from './components/study/articles/morequeries.vue'
+    import functions from './components/study/articles/functions.vue'
+    import wildcards from './components/study/articles/wildcards.vue'
+    import union from './components/study/articles/union.vue'
+    import joins from './components/study/articles/joins.vue'
+    import nestedquery from './components/study/articles/nestedquery.vue'
+    import ondel from './components/study/articles/ondel.vue'
+    import triger from './components/study/articles/triger.vue'
+    import diagrams from './components/study/articles/diagrams.vue'
+    import design from './components/study/articles/design.vue'
+    import mapping from './components/study/articles/mapping.vue'
+
 import divpos from './components/ref/css/divpos.vue'
 import divbreak from './components/ref/css/divbreak.vue'
 import colorname from './components/ref/css/colorname.vue'
+import gradient from './components/ref/css/gradient.vue'
 import clickcopy from './components/ref/clickcopy'
 
 import addlink from './components/study/addlink.vue'
@@ -65,6 +95,9 @@ import vdeliver from './components/vdeliver.vue'
 import artyomjs from './components/study/artyomjs.vue'
 import email from './components/study/email'
 import filehandler from './components/study/filehandler'
+import toollinks from './components/tools/toollinks'
+import containertype from './components/trading/containertype'
+import containercapability from './components/trading/containercapability'
 
 import profile from './components/profile.vue'
 
@@ -193,6 +226,7 @@ let routes = [
 {path:'/dcate',component:dcate},
 {path:'/catetree',component:catetree},
 {path:'/treelist',component:treelist},
+{path:'/scheduler',component:scheduler},
 
 {path:'/profile',component:profile},
 {path:'/users',component:users},
@@ -216,30 +250,53 @@ let routes = [
 {path:'/loadingStyle',component:loadingStyle},
 {path:'/uploadfiles',component:uploadfiles},
 {path:'/loadimgs',component:loadimgs},
+{path:'/keycode',component:keycode},
 {path:'/refhtml',component:refhtml},
+{path:'/webcolor',component:webcolor},
 {path:'/refjs',component:refjs},
 {path:'/refphp',component:refphp},
 {path:'/regexp',component:regexp},
 {path:'/refother',component:refother},
+{path:'/refpte',component:refpte},
 {path:'/input/accept',component:inputacc},
 {path:'/btnstyle',component:btnstyle},
 {path:'/refcss',component:refcss},
 {path:'/refmysql',
   component:refmysql,
-  children:[
-        {
-            path:'schema',
-            component:schema
-        },
-        {
-            path:'issue',
-            component:issue
-        }
-    ],
+  children:
+      [
+        {path:'schema',component:schema},
+        {path:'issue',component:issue},
+        {path:'sql',component:sql},
+        {path:'tablesAndKeys',component:tablesAndKeys},
+        {path:'sqlBasic',component:sqlBasic},
+        {path:'installtowin',component:installtowin},
+        {path:'installtomac',component:installtomac},
+        {path:'createtable',component:createtable},
+        {path:'insertdata',component:insertdata},
+        {path:'constraints',component:constraints},
+        {path:'updatedel',component:updatedel},
+        {path:'query',component:query},
+        {path:'companydatabase',component:companydatabase},
+        {path:'createcompanydatabase',component:createcompanydatabase},
+        {path:'morequeries',component:morequeries},
+        {path:'functions',component:functions},
+        {path:'wildcards',component:wildcards},
+        {path:'union',component:union},
+        {path:'joins',component:joins},
+        {path:'nestedquery',component:nestedquery},
+        {path:'ondel',component:ondel},
+        {path:'triger',component:triger},
+        {path:'diagrams',component:diagrams},
+        {path:'design',component:design},
+        {path:'mapping',component:mapping},  
+      ],
+
 },
 {path:'/divpos',component:divpos},
 {path:'/divbreak',component:divbreak},
 {path:'/colorname',component:colorname},
+{path:'/gradient',component:gradient},
 {path:'/addlink',component:addlink},
 {path:'/rdkp',component:readingkeeper},
 {path:'/readingrec',component:readingrec},
@@ -250,6 +307,9 @@ let routes = [
 {path:'/email',component:email},
 {path:'/filehandler',component:filehandler},
 {path:'/clickcopy',component:clickcopy},
+{path:'/toollinks',component:toollinks},
+{path:'/containertype',component:containertype},
+{path:'/containercapability',component:containercapability},
 
 //拆分到message.js中的路由
 
@@ -327,8 +387,15 @@ const app = new Vue({
         eventHandler.$emit('searching');
         },1000),
       globalPrint(){
-          window.print();
-          // alert('globalPring');
+            // bdhtml=window.document.body.innerHTML;//获取当前页的html代码
+            // sprnstr="<!--startprint-->";//设置打印开始区域
+            // eprnstr="<!--endprint-->";//设置打印结束区域
+            // prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html
+            // prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html
+            // window.document.body.innerHTML=prnhtml;
+            window.print();
+            // window.document.body.innerHTML=bdhtml;
+        
         },
       sessionListener(){
           // console.log('全局监听鼠标事件..........');
