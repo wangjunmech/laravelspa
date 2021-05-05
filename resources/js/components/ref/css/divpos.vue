@@ -53,7 +53,14 @@ border:1px solid #00F;margin-left:50%;">MMM333---中</div>
                         <hr>
                             <div style="width:200px;height:200px; border:2px solid #0f0;position:relative;">
                                 <div style="width:100px;height:100px;margin:auto;position:absolute;left:50%;top:50%;margin-left: -50px;margin-top:-50px;background-color: pink">555</div>
-                            </div>                          
+                            </div> 
+                        <hr>
+                        <h2>DIV重叠</h2>
+                          <div >
+                            <div style="position:absolute;font-size:120px;background:green;z-index: 1;width: 100%;">A</div>
+                            <div style="position:relative;font-size:120px;opacity: 1;z-index: 2;">B</div>
+                          </div> 
+                                                     
                     </div>
                 </div>
             </div>

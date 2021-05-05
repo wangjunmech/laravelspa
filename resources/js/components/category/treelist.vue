@@ -11,15 +11,15 @@
     <button @click="addNode">Add Node</button>
     </div>
     <vue-tree-list
-      @click="onClick"
-      @dblclick="dblclick"
-      @change-name="onChangeName"
-      @delete-node="onDel"
-      @add-node="onAddNode"
+      @click="onClick($event)"
+      @dblclick="dblclick($event)"
+      @change-name="onChangeName($event)"
+      @delete-node="onDel($event)"
+      @add-node="onAddNode($event)"
       :model="data"
-      default-tree-node-name="新文件夹"
-      default-leaf-node-name="new leaf"
-      v-bind:default-expanded="false">
+      default-tree-node-name="父节点"
+      default-leaf-node-name="子节点"
+      v-bind:default-expanded="false" style="background-color: red:width:auto">
       <span class="icon" slot="addTreeNodeIcon">📂</span>
       <span class="icon" slot="addLeafNodeIcon">＋</span>
       <span class="icon" slot="editNodeIcon">✍</span>
@@ -86,7 +86,7 @@
     },
     methods: {
       onDel (node) {
-        console.log(node)
+        console.log(node.id)
         console.log('删除节点');
         confirm('删除节点'+node.name+'???')
         // node.remove()
@@ -110,7 +110,7 @@
 
       onClick (params) {
         console.log('鼠标单击节点单事件');
-        // console.log(params.id+'---PID'+params.pid)
+        console.log(params.id+'---PID'+params.pid)
       },
       dblclick(){
         console.log('dblclick***************')
@@ -127,7 +127,6 @@
         var vm = this
         function _dfs (oldNode) {
           var newNode = {}
-
           for (var k in oldNode) {
             if (k !== 'children' && k !== 'parent') {
               newNode[k] = oldNode[k]
@@ -155,6 +154,7 @@
       // axios.get('api/user?page='+2)
         .then(({data}) => (
             this.categories=data
+            // console.log(data)
             ))
         .catch(err=>console.log(err))
         .then(
@@ -168,7 +168,7 @@
      },
 
     arrToJsonObj:function(){
-      //重组数据，返回嵌套数组对象
+      //重组数据，把普通数据根据id重组为嵌套json,返回嵌套数组对象,
       var tempArr=this.categories;//原数组data
       var newArr = null;//新data
         function findobj(arr,id){
@@ -262,18 +262,19 @@
   .vtl {
     .vtl-drag-disabled {
       background-color: #d0cfcf;
-      &:hover {
+/*      &:hover {
         background-color: #d0cfcf;
-      }
+      }*/
     }
     .vtl-disabled {
       background-color: #d0cfcf;
     }
   }
   .icon {
-    &:hover {
+    width: 100px;
+/*    &:hover {
       cursor: pointer;
-    }
+    }*/
   }
 </style>
 

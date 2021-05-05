@@ -18,7 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </head>
 <style>
-      @page {
+  @page {
       /*用样式去除边距全打印不出页眉页脚*/
       /* 纵向 */
       /*size: portrait; */
@@ -28,6 +28,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
       /* 边距 上右下左 */
       /*margin: 1cm 2cm 1cm 2cm;*//*//设置边距会打印出浏览器默认页眉页脚*/
       margin: 0;/*去除浏览器默认页眉页脚*/
+    }
+  li{
+        list-style-type: none;    
+    }
+  /*文章标题样式*/
+  .el_theme{
+        font-size: 20px;
+        font-weight: 900;
+    }
+  /*文章内容样式*/
+  .el_exp{
+        background-color: #adf;
+    }
+  /*文章注解样式*/
+  .el_note{
+        background-color: Gold;
+        color:red;
+        text-indent:25px;
     }
 </style>
 <body class="hold-transition sidebar-mini ">
@@ -59,7 +77,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
+      <li class=" p-2">
+        <a href="#" @click.prevent="addToFavorite()" rel=sidebar>
+          <!-- <i class="fa fa-heart"></i> -->
+          收藏
+        </a>
+      </li>
       <li class=" p-2">
         <a href="#" @click.prevent="globalPrint()">
           <i class="fa fa-print"></i>
@@ -238,6 +261,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
              
               <li class="nav-item">
+                <router-link to="/vuebasic" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Vue Basic</p>
+                </router-link>          
+              </li>
+             
+              <li class="nav-item">
                 <router-link to="/slot" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Slot & Component</p>
@@ -248,6 +278,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <router-link to="/ref" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ref</p>
+                </router-link>          
+              </li>
+
+              <li class="nav-item">
+                <router-link to="/threejs" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ThreeJS</p>
+                </router-link>          
+              </li>
+
+              <li class="nav-item">
+                <router-link to="/orderitems" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Order排序</p>
                 </router-link>          
               </li>
 
@@ -340,6 +384,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Drag5</p>
                 </a>          
               </li>
+              <li class="nav-item">
+                <a href="/drag6" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Drag6</p>
+                </a>          
+              </li>
 
               <li class="nav-item">
                 <a href="/resize" class="nav-link">
@@ -367,6 +417,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <router-link to="/keycode" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Keycode</p>
+                </router-link>          
+              </li>
+              <li class="nav-item ">
+                <router-link to="/cursor" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>cursor focus</p>
+                </router-link>          
+              </li>
+              <li class="nav-item ">
+                <router-link to="/simuinput" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>simu-click input</p>
                 </router-link>          
               </li>
               <li class="nav-item ">
@@ -407,6 +469,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <i class="far fa-circle nav-icon"></i>
                   <p>RegExp正则</p>
                 </router-link>          
+              </li>                
+              <li class="nav-item ">
+                <router-link to="/refgit" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>GitHub</p>
+                </router-link>          
+              </li>                  
+              <li class="nav-item ">
+                <router-link to="/refatinker" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laravel Artisan & tinker</p>
+                </router-link>          
+              </li>                
+              <li class="nav-item ">
+                <router-link to="/refssh" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>SSH</p>
+                </router-link>          
               </li>              
               <li class="nav-item ">
                 <router-link to="/refmysql" class="nav-link">
@@ -419,6 +499,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <router-link to="/refother" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>参考网站</p>
+                </router-link>          
+              </li>
+              
+              <li class="nav-item ">
+                <router-link to="/refwin" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Win+R运行常用命令</p>
                 </router-link>          
               </li>
               
@@ -656,16 +743,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
              </ul>
-           </li>
-              
-        <li class="nav-item">
+           </li>              
+          <li class="nav-item has-treeview">
                 <router-link to="/profile" class="nav-link">
                   <i class="fa fa-user fa-fw yellow"></i>
                   <p>Profile          
-                <i class="fas fa-angle-left right"></i>                
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">6</span>
+               
               </p>
-                </router-link>          
-        </li>
+                </router-link>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link to="/keys" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Web & Key</p>
+                </router-link>           
+              </li>
+
+              <li class="nav-item">
+                <router-link to="/keys" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Web & Key</p>
+                </router-link>           
+              </li>
+
+
+             </ul>
+           </li>
+
         <li class="nav-item">
         <a href="/logout" onclick="event.preventDefault();
                document.getElementById('logout-form').submit();" class="nav-link btn btn-danger"><i class="nav-icon fas fa-power-off"></i> <p>

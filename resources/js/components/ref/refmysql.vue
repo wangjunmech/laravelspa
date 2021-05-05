@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Mysql refernces(使用子路由,app.js下引入子组件并在routes = []中的path:'/refmysql'下配置子组件注意不要再加/了。在refmysql.vue中添加router-view标签)</div>
+                    <div class="card-header"><h2>Mysql refernces</h2>(使用子路由,app.js下引入子组件并在routes = []中的path:'/refmysql'下配置子组件注意不要再加/了。在refmysql.vue中添加router-view标签)</div>
                     <div class="card-body">
                         <router-link to="/refmysql/issue" class="items" @click.native="switchView($event)">
                           参考网站

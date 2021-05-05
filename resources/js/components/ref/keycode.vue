@@ -3,12 +3,32 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Key code References <a href="https://www.ifreesite.com/typing-keyboard-mouse.htm">Key code online</a></div>
+                    <div class="card-header"><h2>Key code References &nbsp; &nbsp; &nbsp;离开当前页面触发的函数</h2> <a href="https://www.ifreesite.com/typing-keyboard-mouse.htm">Key code online</a>
+                        <p class="el_note">本页添加了按键事件后，离开页面要处理，否则到其它页面按下按键还会触发事件。处理方法：1.在mounted方法下添加离开提示事件window.onbeforeunload=function(e){} .2添加生命周期函数destroyed: function () {document.onkeydown="";//取消按键触发事件}</p>
+                    </div>
                     <div class="card-body">
 <div>
     <div class="tbox">
         <p>键盘+鼠标 – Keyboard&Mouse
-        </p><p>键盘 Keyboard
+        </p><p>键盘 Keyboard <a data-property="
+    position: relative;
+    float: left;
+    width: 140px;
+    height: 140px;
+    box-sizing: border-box;
+    margin: 0 15px 30px;
+    background: slategray;
+    color: white;
+    font-size: 60px;
+    line-height: 150px;
+    text-align: center;
+    counter-increment: tranums;
+    outline-color: transparent;
+" data-from="0 0 white" data-to="0 0 rgba(255,255,255,0), -45px -45px 0 red, -30px -30px 0 orange, -15px -15px 0 yellow, 0 0 0 green, 15px 15px 0 blue, 30px 30px 0 indigo, 45px 45px 0 violet" data-author="kizmarh" id="text-shadow/2" href="javascript:void(0);" title="text-shadow from 0 0 white to 0 0 rgba(255,255,255,0), -45px -45px 0 red, -30px -30px 0 orange, -15px -15px 0 yellow, 0 0 0 green, 15px 15px 0 blue, 30px 30px 0 indigo, 45px 45px 0 violet" data-cssmemo="@keyframes text-shadow-2{
+    from{text-shadow:0 0 white}
+    to{text-shadow:0 0 rgba(255,255,255,0), -45px -45px 0 red, -30px -30px 0 orange, -15px -15px 0 yellow, 0 0 0 green, 15px 15px 0 blue, 30px 30px 0 indigo, 45px 45px 0 violet}
+}
+#text-shadow\/2:hover { animation: text-shadow-2 1s infinite alternate;text-shadow:0 0 white}">2</a>
         </p><p>一个标准的Windows键盘，我们可以从按键数目来分为 104keys〈标准美式英文，亚洲大部份地区的键盘也是这个规格〉、105Keys〈欧洲语文，比标准美式英文多一个按键〉、108keys〈日文，日本往往都是独树一格〉。后来有精简过的键盘出现，也就是像笔记本电脑键盘，大约都是在 88keys 左右。而Apple键盘则有 79keys，后来又发展到 130keys 甚至更多。总而言之，在不同年代，越来越多的功能键和多媒体键增加到键盘上，如调整音量，视讯光暗调节，开启网页或邮件等操作。因此在各家的规格都不太相同。
         </p><p>鼠标 Mouse
         </p><p>鼠标，又叫老鼠、鼠标。是常用来控制计算机或智能电视机的输入设备，它可以对目前屏幕上的光标进行定位，并透过按键和滚轮装置对光标所经过位置的屏幕元素进行操作。现时市面上的鼠标规格繁多，大致共分为几类。
@@ -23,15 +43,16 @@
     </div>  
 <div class="showcode">
     <input type="text" @keyup.enter="entersubmit()" placeholder="监听回车提交">
-    <input type="text" @wheel.prevent="mscroll($event)" placeholder="监听鼠标滚轮事件" v-model="scrollnum" style="border-radius: 5px;">
+    <input id="blinktest1" type="text" @click.stop @wheel.prevent="mscroll($event)" placeholder="监听鼠标滚轮事件" v-model="scrollnum" style="border-radius: 5px;"  @mouseover="urlcursor($event)">
 </div>   
-<div  @mouseup="onContextMenu" ref="listBox" class="mousetracker">
+<div @mouseup="onContextMenu" ref="listBox" class="mousetracker">
+    <!-- @contextmenu.prevent="onContextMenu" 阻止右键菜单但也阻止了左中键监听 -->
     监听鼠标点击DIV，鼠标在此区域点击可监听触发了哪个键
 </div> 
             <input type="range" id='range' min="0" max="100" value="1" @change="changerange"/>
 
-<div  @wheel.prevent="mscroll($event)" class="mousetracker">
-    <h3>监听鼠标标滚轮事件,@wheel.prevent="mscroll($event)"阻止默认的页面滚动</h3>
+<div id="blinktest"  @wheel.prevent="mscroll($event)" class="mousetracker">
+    <h3 @mouseover="urlcursor($event)">监听鼠标标滚轮事件,@wheel.prevent="mscroll($event)"阻止默认的页面滚动</h3>
 </div>  
 <div class="mbox">    
         <div class="mousebox">
@@ -876,6 +897,13 @@
                 </td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table>
 </div>
 
+
+<!-- js模拟输入 -->
+<hr>
+<hr>
+
+
+
                             
                     </div>
                 </div>
@@ -929,6 +957,7 @@
             return {
                 currentId:1,
                 scrollnum:0, //滚动初始值
+
             }
         }, 
         methods: {
@@ -952,7 +981,8 @@
 
 
             mscroll(e){
-                e.target.style.backgroundColor='red';
+            //判断鼠标滚轮滚动方向
+                // e.target.style.backgroundColor='red';
                 // console.log('mscroll');
                 // console.log(e.deltaY);
                 if(e.deltaY>0){
@@ -963,6 +993,43 @@
 
                     //向上滚
                 }
+                // ***********
+                this.$nextTick(() => {
+                    // console.log(blinkID+'............');
+                      // function blink(blinkID,c1,c2){
+                      //   // console.log('Blink Function............');
+                      //   var params = [blinkID,c1,c2];
+                      //   // console.log(params);
+                      //   var colorflag=0;
+                      //   var test=setInterval(function(){
+                      //     // console.log('...xxx...'+blinkID)
+                      //     var id = params[0];
+                      //     var c1 = params[1];
+                      //     var c2 = params[2];
+                      //     var blinkNode = document.getElementById(blinkID);//找节点ID
+                      //     console.log(blinkNode);
+                      //     // var color=window.getComputedStyle(blinkNode)['background-color']; 
+                      //     // console.log(color);//获取计算后的背景颜色
+                      //     if(colorflag){
+                      //     blinkNode.style.background=c1;
+                      //     colorflag=!colorflag;
+                      //     }else{
+                      //     blinkNode.style.background=c2;
+                      //     colorflag=!colorflag;
+                      //     }
+                      //    },
+                      //    500,
+                      //    params
+                      //    );
+                      //  setTimeout(function(){
+                      //   clearInterval(test);
+                      //  },10000)
+                      // }
+                      // // blink("blinktest",'#acd','red');
+                      // // blink("blinktest1",'#acd','red');
+                    this.blinkNode("blinktest",'yellow','blue');
+                    this.blinkNode("blinktest1",'red','green');
+                });
             },
             // stopPagescroll(){
             //     console.log('stopPagescroll');
@@ -976,35 +1043,11 @@
                 console.log(num+'<<<<');           
 
             },
-            //判断鼠标滚轮滚动方向
+            urlcursor(e){
+                e.target.style.cursor='url("./Cursors/mw2.cur"),pointer';//OK
+                },
 
-            //函数防抖
-            debounce(func, wait) {
-                let timeout;
-                return function () {
-                    let context = this;
-                    let args = arguments;
-                    if (timeout) clearTimeout(timeout);
-                    timeout = setTimeout(() => {
-                        func.apply(context, args)
-                    }, wait);
-                }
-                console.log('debounce');
-            },
-            //判断滚动方向
-            handleScroll(e){
-                let direction = e.deltaY > 0 ? 'down' : 'up'
-                if(this.currentId <= 1){
-                    direction == 'down'  ?  this.currentId++ : this.currentId = 1
-                }else if(this.currentId>=this.listName.length){
-                    direction == 'down' ? this.currentId = this.listName.length : this.currentId--
-                }else{
-                    direction == 'down' ? this.currentId++ : this.currentId--
-                }
-                //业务操作
-                this.changeSel(this.currentId); 
-                console.log('handleScroll');
-            },
+
           },
         mounted() {
                 //当前页面监视键盘输入                                    
@@ -1028,9 +1071,17 @@
                         action.showkeycode(e1.keyCode);
                     }
 
-                })
+                });
+                window.onbeforeunload=function(e){     
+                　　var e = window.event||e;  
+                　　e.returnValue=("确定离开当前页面吗？");
+                } 
   
-        }
+        },
+        destroyed: function () {
+              console.log("离开页面需要清理keycode事件，不然到别的页面按键还会有触发问题");
+              document.onkeydown="";
+        },
 }
 </script>
 <style scoped="scoped">
@@ -1115,7 +1166,7 @@ border-radius: 5px;
     border:1px solid red;
     position:relative;
     display: inline-block;
-    width: 35px;
+    width: 30px;
     height: 59px;
     background: yellow;
 }

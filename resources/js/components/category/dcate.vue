@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                      <h3>Dynamic Category 插槽使用</h3>
+                      <h3>Drag使用</h3>
                     </div> 
                     <div class="card-body">
                       <treebrowser :node="root" :indentRatio="indentRatio" />

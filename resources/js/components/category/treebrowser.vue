@@ -1,6 +1,21 @@
 <template>
   <div class="tree">
-    <div class="node" :id="node.id" @mouseenter="cursoron" @mouseleave="cursoroff" :style="{'margin-left':depthLev * indentRatio + 'px'}" @click="showinfo($event)">
+    <div 
+    class="node" 
+    :id="node.id" 
+    @mouseenter="cursoron" 
+    @mouseleave="cursoroff" 
+
+    :style="{'margin-left':depthLev * indentRatio + 'px'}" 
+    @click="showinfo($event)"      
+        draggable="true"
+        @dragstart="dragstart($event)" 
+        @dragend="dragend($event)"
+        @drop.prevent="drop($event)" 
+        @dragover.prevent.stop="dragover($event)"
+        @dragleave.prevent.stop="dragleave($event)"
+
+    >
       <span v-if="hasChildren" @click="toggleNode">
           <slot name="folded">
             <span >
@@ -26,10 +41,11 @@
           <span class="cursorpointer" @click="delNode($event)" title="delNode" style="color:red;font-size: auto"><slot name="delNode">❌</slot></span>
         </span>
     </div>
+    <div class="mgline" title="mgline"></div>
 
     <treebrowser 
     v-if="node.isShow"
-    v-for="child in node.children" 
+    v-for="(child,index) in node.children" 
     :key="child.id"
     :node="child"
     :depthLev="depthLev+1"
@@ -37,6 +53,7 @@
     :id="node.id"
     :pid="node.pid"
     @addNode="addNodeAction($event)"
+
     >
             <span slot="addNewNode" class="btn btn-primary">添加子项</span>
             <span slot="editNode">编辑</span>
@@ -58,7 +75,6 @@ export default {
       depthLev:{
         type:Number,
         default:0,
-
       },
       indentRatio:{
         type:Number,
@@ -66,6 +82,8 @@ export default {
       },
       id:null,
       pid:null,
+      dgfrom:null,
+      dgto:null,
   },
   data () {
     return {
@@ -74,7 +92,9 @@ export default {
     showTool:false,
     children:[],
     childrenFlag:false,
-    oldName:null,
+    oldName:'',
+    draggingItem:'',
+    dropItem:'',
     } 
   },
   computed:{
@@ -90,12 +110,79 @@ export default {
 
   },
   methods:{
-    cursoron: function(item) {
+
+    //处理拖动冒泡问题
+    dragIselection:function(ele){
+      var sele
+      if(ele.tagName=="DIV"){
+        sele=ele.firstChild;
+        // console.log('selected===>DIV')
+      }
+      if(ele.className=='cursorpointer'){
+        sele = ele.parentNode.parentNode.parentNode;
+      }
+
+      if(ele.tagName=="SPAN"){
+        sele=ele.parentNode;
+        // console.log('selected===>node')
+      }else{
+        sele=ele;
+      }
+      return sele;
+    },
+    dragstart: function(e) {
+      // //拖拽开始样式处理
+      e.target.style.background="green";
+      e.target.style.opacity=0.1;
+      // e.target.style.border="2px solid red";
+      // this.draggingItem = item.id;
+      // console.log('dragstart====>'+item.id)
+      // console.log('this.draggingItem=='+this.draggingItem)
+      console.log(this.root)
+       },
+    dragover: function(e) {
+      //拖拽经过
+      // e.dataTransfer.dropEffect = 'move'//dragenter中针对放置目标来设置!
+      // var overitem;
+      // overitem=this.dragIselection(e.target);
+      // overitem.style.background="pink"
+
+
+
+      //
+   
+       },
+    dragleave: function(e) {
+      // // 拖拽离开
+      // var overitem;
+      // overitem=this.dragIselection(e.target);
+      // overitem.style.background=""
+       },
+    drop: function(e) {
+      // console.log('^^^^^^^^^^drop^^^^^^^^^^')
+      // this.dropItem=e.target.id;
+      // console.log(this.draggingItem+'*****>>>'+e.target.id+'===='+this.node.name)
+      // // console.log('*****>>>'+this.dropItem)
+      console.log('^^^^^^^^^dragend^^^^^^^^^^^')
+      console.log('>>>drop e.target======'+e.target.id)
+       },
+    dragend: function(e) {
+      // e.target.style.opacity=1;
+      // // e.target.style.border="";
+
+      console.log('^^^^^^^^^dragend^^^^^^^^^^^')
+      console.log('>>>End e.target======'+e.target.id)
+      // console.log('======>>>'+this.dropItem)
+      // console.log(obj)//拖动放置到的元素的id
+
+      //拖拽结束XXXXXXXXXXxx
+       },
+    cursoron: function() {
       //鼠标经过背景色设置
       this.showTool=true;
       this.$el.firstChild.style.background="#cff";
        },
-    cursoroff: function(item) {
+    cursoroff: function() {
       //鼠标经过背景色设置为空
       this.showTool=false;
       this.$el.firstChild.style.background="";
@@ -276,7 +363,7 @@ export default {
         // console.log(JSON.stringify(this.root)); 
       },
 
-      delNode: function() {
+      moveNode: function() {
                 console.log(JSON.stringify(this.root)); 
                 // console.log(JSON.stringify(this.node)); 
                 // console.log(this.node.pid);
@@ -294,9 +381,6 @@ export default {
                 if(!conf){
                   return;
                 }
-
-
-
 
             function DelById(object, val) {
               // @在树节点中搜索指定id的对象并返回对象的name
@@ -322,7 +406,62 @@ export default {
               
             
             if(currentId == 0){
-              console.log('当前为根节点不能删除！');
+              alert('当前为根节点不能删除,请联络管理员！');
+              return;
+            }
+            var newRoot = DelById(this.root,currentId)//测试在树节点中搜索指定id的对象
+            // console.log(JSON.stringify(newRoot));
+            // console.log('**************>>>>');
+            // console.log(JSON.stringify(this.root));
+
+            
+
+        },
+
+      delNode: function() {
+                console.log(JSON.stringify(this.root)); 
+                // console.log(JSON.stringify(this.node)); 
+                // console.log(this.node.pid);
+                var currentId=this.node.id; 
+                var parentId=this.node.pid; 
+                // console.log('currentId='+currentId);
+                // console.log('parentId='+parentId);
+                // console.log(this.node);
+                if(this.node.children){
+                  var conf=confirm('删除节点 '+this.node.name+' 将删除其所有子节点！确认要删除吗?');
+
+                }else{
+                  var conf=confirm('确认要删除节点 '+this.node.name+'？');
+                }
+                if(!conf){
+                  return;
+                }
+
+            function DelById(object, val) {
+              // @在树节点中搜索指定id的对象并返回对象的name
+              // @object 树对象this.root
+              // @val 查找对象的id
+                // console.log('in root obj........')
+                // console.log(object.children);
+                // console.log(object.children.length+'***');
+                var num = object.children.length;  
+                for (var i = 0;i < num; i++){
+                     if (object.children[i].id==val){
+                         object.children.splice(i,1);
+                         return object;
+                     }else if(object.children[i].children){
+                         return DelById(object.children[i],val)
+                         }
+                  }
+                  //操作删除DOM
+                  var currentDOM = document.getElementById(val);
+                  // console.log(currentDOM);
+                  currentDOM.parentNode.parentNode.removeChild(currentDOM.parentNode);
+                }
+              
+            
+            if(currentId == 0){
+              alert('当前为根节点不能删除,请联络管理员！');
               return;
             }
             var newRoot = DelById(this.root,currentId)//测试在树节点中搜索指定id的对象
@@ -344,5 +483,10 @@ export default {
   }
   .node{
     border-top: dashed 1px red;
+  }
+  .mgline{
+    background-color: lightblue;
+    height: 6px;
+    width: 100%;
   }
 </style>

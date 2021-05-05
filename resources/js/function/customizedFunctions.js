@@ -1,6 +1,8 @@
 //在app.js中引入此文件
 // import Custfuns from './function/customizedFunctions.js'
 // Vue.use(Custfuns);
+
+
 exports.install = function (Vue, options) {
     Vue.prototype.testCustFun = function (info){
        console.log('testCustFun..........'+info)
@@ -123,6 +125,86 @@ exports.install = function (Vue, options) {
         addEvent('input', change);
         addEvent('focus', change);
         change();
-};
+    };
+    Vue.prototype.blinkNode = function (elem, color1='red', color2='yellow') {
+/**
+* 自定义闪烁元素背景（元素ID，闪烁颜色1，闪烁颜色2）
+* @param                {elem}        元素ID
+* @param                {color1}      闪烁颜色1默认(red)
+* @param                {color2}      闪烁颜色2默认(yellow)
+*/
+        // 自定义闪烁元素背景（元素ID，闪烁颜色1，闪烁颜色2）
+                console.log('Vue Blink ............');
+                // var params = [elem,color1,color2];
+                // console.log(params);
+                var colorflag=0;//标记初始闪烁颜色，后面根据条件切换
+                var blinkNode = document.getElementById(elem);//找节点ID
+                var blinktimeset;
+
+                blinkcheck = blinkNode.getAttribute('blinkon');//获取blinkon属性
+                console.log('********'+blinkcheck);
+                if(blinkcheck=="true"){
+                    return;
+                }else{
+                    blinkNode.setAttribute('blinkon',true);//设置节点属性，表示正在执行blink,用以检测快闪问题
+                    console.log('****设置闪烁****');
+                    // 设置闪烁
+                    blinktimeset=setInterval(function(){
+                      // console.log(blinkNode);
+                      // var color=window.getComputedStyle(blinkNode)['background-color']; 
+                      if(colorflag){
+                      blinkNode.style.background=color1;
+                      colorflag=!colorflag;
+                      }else{
+                      blinkNode.style.background=color2;
+                      colorflag=!colorflag;
+                      }
+                     },
+                     500,
+                     // params
+                     );
+                // //如果已经触发了一次函数，第二次触发时先清除定时器，再把快闪检测属性设置为false
+                // console.log('blinkcheck='+blinkcheck);
+                setTimeout(function(){
+                    console.log('清除timer');
+                    blinkNode.setAttribute('blinkon',false);//设置节点属性为false以触发再次调用，
+                    clearInterval(blinktimeset);               
+                },4000)
+                }
+
+
+    };
+
+
+
 
 };
+
+// // ********************************
+//         //数组不复复添加元素
+// Array.prototype.pushNoRepeat = function(){ 
+//     for(var i=0; i<arguments.length; i++){ 
+//         var ele = arguments[i]; 
+//         if(this.indexOf(ele) == -1){ 
+//             this.push(ele);
+//             return this.length; 
+//         }else{
+//             return -1;
+//         } 
+//         } 
+//         return this.indexOf(ele);
+//     };
+
+// // 生成随机颜色的函数
+// function bg1(){
+// return '#'+Math.floor(Math.random()*256).toString(10);
+// }
+// function bg2(){
+// return '#'+Math.floor(Math.random()*0xffffff).toString(16);
+// }
+// function bg3(){
+// var r=Math.floor(Math.random()*256);
+// var g=Math.floor(Math.random()*256);
+// var b=Math.floor(Math.random()*256);
+// return "rgb("+r+','+g+','+b+")";//所有方法的拼接都可以用ES6新特性`其他字符串{$变量名}`替换
+// }

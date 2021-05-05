@@ -21,7 +21,7 @@ class WebSpiderController extends Controller
         // return $request;
         $word = $request->get('w');
         if(empty($word)){
-            return '请在地址栏输入参数;';
+            return '请在地址栏输入参数;取得百度翻译发音保存文件到sounds\elements\单词.mp3，参数格式?w=单词';
         }
         $wordlink = 'https://fanyi.baidu.com/gettts?lan=uk&text='.$word.'&spd=3&source=web';
 

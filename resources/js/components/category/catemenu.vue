@@ -7,6 +7,13 @@
     @mouseleave="cursoroff" 
     :style="{'margin-left':depthLev * indentRatio + 'px'}" 
     @click="showinfo($event)"
+          draggable="true"
+          @dragstart="handleDragStart($event, node)"
+          @dragover.prevent="handleDragOver($event, node)"
+          @dragleave.prevent="handleDragLeave($event, node)"
+          @dragenter="handleDragEnter($event, node)" 
+          @dragend="handleDragEnd($event, node)"
+
     >
 
       <span v-if="hasChildren" @click="toggleNode">
@@ -34,6 +41,7 @@
           <span class="cursorpointer" @click="delNode($event)" title="delNode" style="color:red;font-size: auto"><slot name="delNode">❌</slot></span>
         </span>
     </div>
+    <div class="dragmargin"></div>
 
 
     <catemenu 
@@ -46,6 +54,8 @@
     :id="node.id"
     :pid="node.pid"
     @addNode="addNodeAction($event)"
+
+
     >
             <span slot="addNewNode">添加子项</span>
             <span slot="editNode">编辑</span>
@@ -100,10 +110,31 @@ export default {
 
   },
   methods:{
+    dragIselection:function(ele){
+      var sele
+      if(ele.tagName=="DIV"){
+        sele=ele.firstChild;
+        // console.log('selected===>DIV')
+      }
+      if(ele.className=='cursorpointer'){
+        sele = ele.parentNode.parentNode.parentNode;
+      }
+
+      if(ele.tagName=="SPAN"){
+        sele=ele.parentNode;
+        // console.log('selected===>node')
+      }else{
+        sele=ele;
+      }
+      return sele;
+    },
     cursoron: function(item) {
+      // console.log('this.overcolor');
+      // console.log(this.$el);
+      // console.log(this.$el.getAttribute('overbg'));
       //鼠标经过背景色设置
       this.showTool=true;
-      this.$el.firstChild.style.background="#cff";
+      this.$el.firstChild.style.background="#ace";
        },
     cursoroff: function(item) {
       //鼠标经过背景色设置为空
@@ -149,19 +180,50 @@ export default {
       return flag;      
     },
     updateName:function(){
-      if(this.oldName){
-      var newName = window.prompt("确认修改名称为",this.node.name)       
-        if(!newName){
-          // 如果提示框点击取消改回原来的名字
-          this.node.name=this.oldName;
-        }
-      }else{
-      var newName = window.prompt("修改名称",this.node.name)       
-        if(newName){
-            this.node.name=newName;
-            }
+      console.log("updateName**************")
+      // console.log(this.$el);
+      // console.log(this.$el.parentNode.innerHTML);//获得附节点中的html
+      // console.log(this.$parent.node.id);//获得父节点的ID
+      // console.log(this.node.name)//当前节点名称
+      var newName = window.prompt("修改名称",this.node.name);
+      if(newName==null) return;    
+      console.log(this.node.name+'*****Old Name')//当前节点名称
+      console.log(newName+'+++++New Name')//修改目标名称
+      //检查当前目录下是否有同名项目
+      if(!newName){return}
+
+
+      //如果新名称与现有名称不同则说明修改
+      if(newName!=this.node.name){
+        //检查当前修改项目的兄弟项目是否有同名项
+        var checkObj=this.$parent.node;
+        if(!this.checkName(checkObj,newName)){
+                alert('修改失败：当前项目下已存在同名项目!');
+                return;
+              }  
+
+        if(!window.confirm("确定修改名称为"+newName+'吗？')) return;//如果没点确认则返回
+        this.node.name=newName;//修改名称
+        console.log('..........完成执行修改')
+
       }
-      console.log(this.node.name+'====NodeName')
+   
+
+
+
+      // if(this.oldName){
+      // var newName = window.prompt("确认修改名称为",this.node.name)       
+      //   if(!newName){
+      //     // 如果提示框点击取消改回原来的名字
+      //     this.node.name=this.oldName;
+      //   }
+      // }else{
+      //   if(newName){
+      //       this.node.name=newName;
+      //       alert()
+      //       }
+      // }
+      // console.log(this.node.name+'====NodeName')
     },
     addNewNode: function(item) {
         // console.log('添加子节点..')
@@ -283,7 +345,7 @@ export default {
               }
               blink(latestId,'#acd','#fcd');
         });
-        // console.log(JSON.stringify(this.root)); 
+        console.log(JSON.stringify(this.root)); 
       },
 
       delNode: function() {
@@ -343,6 +405,43 @@ export default {
             
 
         },
+        // ***********拖动拖拽
+
+          handleDragStart(e,item){
+            this.dragging = item;
+
+          },
+          handleDragEnd(e,item){
+            this.dragging = null
+          },
+          //首先把div变成可以放置的元素，即重写dragenter/dragover
+          handleDragOver(e) {
+            e.preventDefault()
+            var overitem;
+            overitem=this.dragIselection(e.target);
+            overitem.style.background="pink"
+          },
+          handleDragLeave(e) {
+            e.preventDefault()
+            e.dataTransfer.dropEffect = 'move'// e.dataTransfer.dropEffect="move";//在dragenter中针对放置目标来设置!
+            var overitem;
+            overitem=this.dragIselection(e.target);
+            overitem.style.background=""
+          },
+          handleDragEnter(e,item){
+            e.dataTransfer.effectAllowed = "move"//为需要移动的元素设置dragstart事件
+            if(item === this.dragging){
+              return
+            }
+            const newItems = [...this.items];//扩展运算符拷贝数组和对象使用示例
+            console.log(newItems)
+            const src = newItems.indexOf(this.dragging)
+            const dst = newItems.indexOf(item)
+
+            newItems.splice(dst, 0, ...newItems.splice(src, 1))
+
+            this.items = newItems
+          },
   },
 
 }
@@ -354,5 +453,10 @@ export default {
   }
   .node{
     border-top: dashed 1px red;
+  }
+  .dragmargin{
+    width:100%;
+    height: 5px;
+    background-color: lightgreen;
   }
 </style>

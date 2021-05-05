@@ -58,9 +58,10 @@
         data(){
             return {
                 containertype:'',
-                boxlength:'',
-                boxwidth:'',
-                boxheigth:'', 
+                containersizearr:'', 
+                boxlength:35,
+                boxwidth:25,
+                boxheigth:20, 
                 fnamedata:'',
                 namedata:'',
                 passdata:'',  
@@ -96,7 +97,53 @@
 
           },
           calculate () {
-            alert('calculate');
+            // alert('calculate');
+            console.log (this.containersizearr);
+            var cmlen,cmw,cmh,conlen,conw,conh,boxnum;
+            cmlen=this.boxlength;
+            cmw=this.boxwidth;
+            cmh=this.boxheigth;
+            var lennum,wnum,hnum;
+            for(var i=0;i<this.containersizearr.length;i++){
+              //循环计算同一摆放方法的三个方向的放置整数
+              switch(i) {
+                   case 0:
+                      var lwh='柜长';
+                      break;
+                   case 1:
+                      var lwh='柜宽';
+                      break;
+                   case 2:
+                      var lwh='柜高';
+                      break;
+                   default:
+                      null;
+              } 
+              console.log(lwh+'除箱长----商：'+Math.floor(this.containersizearr[i]/cmlen))//整除
+              lennum=Math.floor(this.containersizearr[i]/cmlen);
+              // console.log(lwh+'除箱长----余：'+this.containersizearr[i]%cmlen)//取余
+              console.log(lwh+'除箱宽----商：'+Math.floor(this.containersizearr[i]/cmw))//整除
+              wnum=Math.floor(this.containersizearr[i]/cmw)
+              // console.log(lwh+'除箱宽----余：'+this.containersizearr[i]%cmw)//取余
+              console.log(lwh+'除箱高----商：'+Math.floor(this.containersizearr[i]/cmh))//整除
+              hnum=Math.floor(this.containersizearr[i]/cmh)
+              // console.log(lwh+'除箱高----余：'+this.containersizearr[i]%cmh)//取余
+
+            }
+
+
+// // 柜长除箱长----商：17 
+// // 柜长除箱宽----商：24 
+// 柜长除箱高----余：0 
+// // 柜宽除箱长----商：6 
+// // 柜宽除箱宽----商：9 
+// 柜宽除箱高----余：15 
+// 柜高除箱长----商：6 
+// 柜高除箱宽----商：9 
+// // 柜高除箱高----余：19
+
+// 柜长除箱长----商：17 柜宽除箱宽----商：9 柜高除箱高----余：19
+// 柜长除箱宽----商：24  柜宽除箱长----商：6 柜高除箱高----余：19
 
           },
           //选择container尺寸后把值设定到data中并更改已选元素的样式
@@ -121,12 +168,23 @@
                 // console.log(containerblock.firstChild.data);
             }
             containerblock.style.border="2px solid red";//给变量指向的节点设置格式
-            this.containertype=containerblock.firstChild.data;//给data设置值
-
-
+            this.containertype=containerblock.firstChild.data;//给containertype设置值
+            // console.log(containerblock.children[0].innerText);//获取container的div下p标签的值
+            var containerSizeText=(containerblock.children[0].innerText);//获取container的div下p标签的值，如：6m*2.35m*2.39m
+            console.log(containerSizeText)
+            // var regx=/\d{0,8}[\.\d{0,8}]+/;//末尾不加g则只能匹配一次返回，不能全部匹配
+            // var regx=/\d*[\.\d*]+/g;//会误匹配*2.35,需要把*号改为{0,N}
+            var regx=/\d{0,8}[\.\d{0,8}]+/g;//正则表达示匹配字符串中的整数或小数
+            var txtarr = containerSizeText.match(regx);//正则匹配字符串中的数字结果返回到数组tarr中，如6m*2.35m*2.39m， [ "12", "2.35", "2.39" ]
+            console.log(txtarr);
+            var numarr = txtarr.map(parseFloat);//把匹配结果字符串数组parseFloat转换为数字 [ 12, 2.35, 2.39 ]
+            var cmarr = numarr.map(function(e){
+              return e*100;
+            });//转换为单位为厘米的数组
+            this.containersizearr=cmarr;
           },
           chkinput(e){
-
+          //检查输入是否为数字
             // console.log(e.target.value);
             e.preventDefault();//阻止冒泡事件
             //先检查是否为数字
@@ -150,7 +208,6 @@
                 e.target.style.background="red";
             }else{
                 e.target.style.background="#0e5";
-
 
             }
 

@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Html refernces <a href="http://kindeditor.net/demo.php">kindeditor在线粘贴复制页面获取html代码</a></div>
+                    <div class="card-header"><h2>Html refernces </h2><a href="http://kindeditor.net/demo.php">kindeditor在线粘贴复制页面获取html代码</a></div>
                     <div class="card-body">
                         <table>
                             <thead>

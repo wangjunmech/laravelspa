@@ -15,7 +15,8 @@
                         <a href="https://www.remove.bg" class="list-group-item list-group-item-danger" target="_blank">图像处理：remove.bg在线抠图 、去除背景</a>
                         <a href="https://www.fotojet.com/" class="list-group-item list-group-item-dark" target="_blank">图像处理：fotojet在线抠图 、去除背景</a>
                         <a href="http://www.docpe.com/excel/excel-to-html.aspx" class="list-group-item list-group-item-primary" target="_blank">在线Excel转换html......各种格式转换在线工具</a>  
-                        <a href=" " class="list-group-item list-group-item-secondary" target="_blank">XXXX66 </a>    
+                        <a href="https://www.freepdfconvert.com/zh-cn/pdf-to-excel" class="list-group-item list-group-item-secondary" target="_blank">PDF转换为Excel</a>   
+                        <a href="https://smallpdf.com/pdf-to-excel" class="list-group-item list-group-item-secondary" target="_blank">smallpdf.com & PDF转换为Excel</a>    
                         <a href=" " class="list-group-item list-group-item-warning" target="_blank">XXXX66 </a>    
                         <a href=" " class="list-group-item list-group-item-danger" target="_blank">XXXX66 </a>    
                         <a href=" " class="list-group-item list-group-item-dark" target="_blank">XXXX66 </a>                         

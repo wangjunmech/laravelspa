@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">正则表达示参考RegExp refernces / <a href="https://www.sojson.com/simple_json.html">Json在线解析格式化</a></div>
+                    <div class="card-header"><h2>正则表达示参考RegExp refernces / <a href="https://www.sojson.com/simple_json.html">Json在线解析格式化</a></h2></div>
                     <div class="card-body">
                         <div class="p">
                             <a href="https://www.sojson.com/regex/generate">sojson.com</a></br>
@@ -499,6 +499,25 @@
                             </tbody>
                         </table>
                         
+                    </div>
+                    <hr>
+                    <div>
+                        <h3>在SublimeText中使用正则匹配文件名</h3>
+                        <H4>CMD中使用cd到相应目录中用dir列出目录中的所有文件，把文件名复制到SublimeText中</H4>
+                        <p>匹配<b>任意字符用包括非打印字符<font color="red" style="background-color: yellow;">/.*/</font>不起作用</b>要使用正则表达示<font color="red" style="background-color: yellow;">/2021\/03\/[\s\S]{28}/</font>, <font color="red">[\s\S]{28}</font>代表匹配28个任意字符</p>
+                        <p><font color="red" style="background-color: yellow;border:1px solid blue">2021/03/29  09:10         2,460,275 </font>34000095700_chassis_lower_part_12.pdf</p>
+
+                        <pre>
+                            <code>
+<font color="red" style="background-color: yellow;border:1px solid blue">2021/03/29  09:10         2,460,275 </font>34000095700_chassis_lower_part_12.pdf
+<font color="red" style="background-color: yellow;border:1px solid blue">2021/03/29  09:10         2,123,708 </font>34000095800_chassis_upper_part_m_11.pdf
+<font color="red" style="background-color: yellow;border:1px solid blue">2021/03/29  09:10           420,924 </font>34000095900_clip_piercer_supp_04.pdf
+<font color="red" style="background-color: yellow;border:1px solid blue">2021/03/29  09:10           564,566 </font>34000096100_sliding_protection_08.pdf
+<font color="red" style="background-color: yellow;border:1px solid blue">2021/03/29  09:10           930,140 </font>34000096500_seat_gasket_holder_05.pdf
+<font color="red" style="background-color: yellow;border:1px solid blue">2021/03/29  09:10           673,277 </font>34000097000_lateral_guide_02.pdf
+                            </code>
+                        </pre>
+
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 require('./bootstrap');
-import './cursorStyles/heart.js';
 /*自定义alert警告框，文件路径\resources\js\function\customizedAlert.js*/
+import './cursorStyles/heart.js';
 import './function/customizedAlert.js';
 
 window.Vue = require('vue');
@@ -20,6 +20,7 @@ import catetree from './components/category/catetree.vue'
 import treelist from './components/category/treelist.vue'
 import scheduler from './components/study/scheduler.vue'
 
+import vuebasic from './components/study/vuebasic.vue'
 import slotcomp from './components/study/slotcomp.vue'
 import users from './components/users.vue'
 import pdemo from './components/pdemo.vue'
@@ -31,11 +32,14 @@ import memorandum from './components/study/memorandum.vue'
 import studynote from './components/study/studynote.vue'
 import autofocus from './components/study/autofocus.vue'
 import ref from './components/study/ref.vue'
+import threejs from './components/study/threejs.vue'
+import orderitems from './components/study/orderitems.vue'
 import drag from './components/study/drag.vue'
 import drag2 from './components/study/drag2.vue'
 import drag3 from './components/study/drag3.vue'
 import drag4 from './components/study/drag4.vue'
 import drag5 from './components/study/drag5.vue'
+import drag6 from './components/study/drag6.vue'
 import resize from './components/study/resize.vue'
 
 import loadingStyle from './components/study/loadingStyle.vue'
@@ -43,11 +47,17 @@ import uploadfiles from './components/study/upload.vue'
 import loadimgs from './components/study/loadimgs.vue'
 import reference from './route/reference.vue'
 import keycode from './components/ref/keycode.vue'
+import cursor from './components/ref/cursor.vue'
+import simuinput from './components/ref/simuinput.vue'
 import refhtml from './components/ref/refhtml.vue'
 import webcolor from './components/ref/webcolor.vue'
 import refjs from './components/ref/refjs.vue'
 import refphp from './components/ref/refphp.vue'
 import regexp from './components/ref/regexp.vue'
+import refssh from './components/ref/refssh.vue'
+import refgit from './components/ref/refgit.vue'
+import refatinker from './components/ref/refatinker.vue'
+import refwin from './components/ref/refwin.vue'
 import refother from './components/ref/refother.vue'
 import refpte from './components/ref/refpte.vue'
 import inputacc from './components/ref/html/inputacc.vue'
@@ -84,6 +94,7 @@ import divpos from './components/ref/css/divpos.vue'
 import divbreak from './components/ref/css/divbreak.vue'
 import colorname from './components/ref/css/colorname.vue'
 import gradient from './components/ref/css/gradient.vue'
+import animation from './components/ref/css/animation.vue'
 import clickcopy from './components/ref/clickcopy'
 
 import addlink from './components/study/addlink.vue'
@@ -100,6 +111,7 @@ import containertype from './components/trading/containertype'
 import containercapability from './components/trading/containercapability'
 
 import profile from './components/profile.vue'
+import keys from './components/keys.vue'
 
 ///***********测试路由分组***********
 // import message1 from './components/message/msg1'
@@ -229,7 +241,9 @@ let routes = [
 {path:'/scheduler',component:scheduler},
 
 {path:'/profile',component:profile},
+{path:'/keys',component:keys},
 {path:'/users',component:users},
+{path:'/vuebasic',component:vuebasic},
 {path:'/slot',component:slotcomp},
 {path:'/passportdemo',component:pdemo},
 {path:'/jspack',component:js},
@@ -239,11 +253,14 @@ let routes = [
 {path:'/studynote',component:studynote},
 {path:'/autofocus',component:autofocus},
 {path:'/ref',component:ref},
+{path:'/threejs',component:threejs},
+{path:'/orderitems',component:orderitems},
 {path:'/drag',component:drag},
 {path:'/drag2',component:drag2},
 {path:'/drag3',component:drag3},
 {path:'/drag4',component:drag4},
 {path:'/drag5',component:drag5},
+{path:'/drag6',component:drag6},
 {path:'/resize',component:resize},
 
 
@@ -251,11 +268,17 @@ let routes = [
 {path:'/uploadfiles',component:uploadfiles},
 {path:'/loadimgs',component:loadimgs},
 {path:'/keycode',component:keycode},
+{path:'/cursor',component:cursor},
+{path:'/simuinput',component:simuinput},
 {path:'/refhtml',component:refhtml},
 {path:'/webcolor',component:webcolor},
 {path:'/refjs',component:refjs},
 {path:'/refphp',component:refphp},
 {path:'/regexp',component:regexp},
+{path:'/refssh',component:refssh},
+{path:'/refgit',component:refgit},
+{path:'/refatinker',component:refatinker},
+{path:'/refwin',component:refwin},
 {path:'/refother',component:refother},
 {path:'/refpte',component:refpte},
 {path:'/input/accept',component:inputacc},
@@ -297,6 +320,7 @@ let routes = [
 {path:'/divbreak',component:divbreak},
 {path:'/colorname',component:colorname},
 {path:'/gradient',component:gradient},
+{path:'/animation',component:animation},
 {path:'/addlink',component:addlink},
 {path:'/rdkp',component:readingkeeper},
 {path:'/readingrec',component:readingrec},
@@ -386,6 +410,37 @@ const app = new Vue({
         console.log('#输入监听1秒开始自动搜索..............');
         eventHandler.$emit('searching');
         },1000),
+
+
+      addToFavorite() {    
+
+               var url=window.location;
+               var title=document.title;
+                  
+              try {
+
+                    window.external.addFavorite(url, title);
+
+                }
+
+              catch (e) {
+
+                   try {
+
+                     window.sidebar.addPanel(title, url, "");
+
+                  }
+
+                   catch (e) {
+
+                       alert("抱歉，您所使用的浏览器无法完成此操作。nn加入收藏失败，请使用Ctrl+D进行添加");
+
+                   }
+
+                }
+
+        }, 
+
       globalPrint(){
             // bdhtml=window.document.body.innerHTML;//获取当前页的html代码
             // sprnstr="<!--startprint-->";//设置打印开始区域

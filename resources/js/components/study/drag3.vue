@@ -45,6 +45,7 @@ export default {
     set(x,y){
       this.data.x=x;
       this.data.y=y;
+      
       }
   },
   

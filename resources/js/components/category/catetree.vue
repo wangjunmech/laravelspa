@@ -6,9 +6,11 @@
                 <div class="card">
                     <div class="card-header">
                       <h3>自定义无限级分类</h3>
+                      <p>待改进:1.同级目录下的名称不能相同，所有级别目录下的名称不能相同可选，自定义背景颜色，拖拽。
+                    </p>
                     </div> 
                     <div class="card-body">
-                      <catemenu :node="root" :indentRatio="indentRatio">
+                      <catemenu :node="root" :indentRatio="indentRatio" :overbg="overbg">
 
                       </catemenu>
                   
@@ -104,7 +106,8 @@
             }
           ]
         },
-        indentRatio:20
+        indentRatio:40,//缩进宽度
+        overbg:"#acf",//鼠标经过背景颜色
           
       }
     },

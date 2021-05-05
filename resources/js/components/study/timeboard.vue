@@ -13,6 +13,7 @@
           <div class="item" v-for="(item,index) in items" :key="item.key" :style="{
           background:item.color,
           color:'blue',
+          width:item.num+'px',
         }"
             draggable="true"
             @dragstart="handleDragStart($event, item)"

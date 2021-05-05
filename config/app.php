@@ -236,4 +236,6 @@ return [
 
     ],
 
+//自定义faker语言
+    'faker_locale' => 'zh_CN',
 ];
