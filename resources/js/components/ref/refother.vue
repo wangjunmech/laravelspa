@@ -5,6 +5,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>参考网站 &nbsp;<a href="http://time.tianqi.com/">世界时间</a></h3>
+                        <h3><a href="http://www.whatweekisit.org/">whatweekisit日历带周数</a></h3>
+                        <h3><a href="https://www.calendar-365.com/2021-calendar.html">calendar-365日历带周数</a></h3>
                         <h3><a href="https://www.iplaysoft.com/tools/chrome/">谷歌浏览器 (Google Chrome) 最新版离线安装包下载</a></h3>
                         <a href="https://greasyfork.org/">Greasy Fork，一个提供用户脚本的网站</a>
        
@@ -219,10 +221,14 @@
 <A class="items" target="_blank" HREF="https://sourceforge.net/projects/vtigercrm/files/latest/download?source=directory">Download Vtiger CRM from SourceForge.net</A><br>
 <A class="items" target="_blank" HREF="http://cdn.gbtags.com/" >极客标签开源CDN服务</A><br>
 <A class="items" target="_blank" HREF="http://www.99cankao.com/" >99参考计算网 九九参考计算网 数学计算器 免费在线算命,周易算命,占卜,姓名八字测试,号码吉凶,QQ号配对--【www.99cankao.com】</A><br>
+<A class="items" target="_blank" HREF="http://www.838dz.com/" >838电子资料</A><br>
 
 <A class="items" target="_blank" HREF="https://redis.io/clients#php">Redis</A><br>
 <A class="items" target="_blank" HREF="http://www.statscrop.com/">StatsCrop -专业网站统计</A><br>
 <A class="items" target="_blank" HREF="https://tool.lu/">在线工具 - 程序员的工具箱</A><br>
+<A class="items" target="_blank" HREF="https://www.zxgj.cn/m/gongcheng?t=1&ob=2">在线工具 - 各种在线计算器</A><br>
+<A class="items" target="_blank" HREF="https://www.eechina.com/tools/">在线工具 - 电子工程师在线工具
+</A><br>
 <A class="items" target="_blank" HREF="http://blog.csdn.net/coffeesweet/article/details/50926847">Firefox 与 sublime text 3 通过LiveReload插件实现前端代码实时预览 - CSDN博客</A><br>
 <A class="items" target="_blank" HREF="https://developer.mozilla.org/zh-CN/docs/Learn">学习 Web 开发 | MDN</A><br>
 <A class="items" target="_blank" HREF="https://www.codecademy.com/">Learn to code | Codecademy</A><br>
